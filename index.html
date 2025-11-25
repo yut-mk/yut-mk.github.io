@@ -1,10 +1,93 @@
 <!DOCTYPE html>
-<html>
-  <head></head>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Yuta's Website</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
   <body>
-    <h1>Yuta's Website</h1>
-    <a href="assets/SVM_Seizure_Detection.pdf" target="_blank">
-    Download my PDF
-    </a>
+      <div class="centered-container">
+      <!-- Hero section: title + subtitle on photo background -->
+      <header class="hero">
+        <div class="hero-content">
+          <h1>Yuta Kiami</h1>
+          <h2>Engineering • Physics • Computation</h2>
+        </div>
+      </header>
+
+      <!-- Personal bio -->
+      <section id="about">
+        <h3>About Me</h3>
+        <p>
+          As a UCLA student in Bioengineering and Physics, I work at the intersection of computational methods, engineering design, and natural sciences. On campus I have involved myself in hands-on engineering projects, as well as many research experiences that have given me a plethora of technical skills. I enjoy learning and thinking at a theoretical level, and applying science and engineering principles to real world problems, whether that be in ML, signal processing, or engineering design and fabrication. Looking forward, I hope to grow my technical experience through engineering intern roles in these areas.
+        </p>
+      </section>
+
+      <!-- Resume link -->
+      <section id="resume">
+        <h3>Resume</h3>
+        <p>
+          <a href="assets/WebsiteResume.pdf" target="_blank" rel="noopener noreferrer">
+            View my resume (PDF)
+          </a>
+        </p>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects">
+    <h3>Projects</h3>
+
+    <!-- TruBalance Stand -->
+    <div class="project">
+      <h4>TruBalance Stand (In Progress)</h4>
+      <p><strong>Skills &amp; Tools:</strong> Constraint-Driven Design, Jupyter, SolidWorks, Prototyping, 3D Printing</p>
+      <ul>
+        <li>Creating a rigid tablet stand defined by a curve that rests at static equilibrium for any angle at which the stand can be placed.</li>
+        <li>Considered physical and geometrical constraints to work out an initial design concept, reducing to only two constraint equations.</li>
+        <li>Used Jupyter to numerically solve for constrained parameters, allowing for easy material and dimensional customizability.</li>
+        <li>Modeled the design in SolidWorks to allow prototyping</li>
+        <li>Currently creating prototypes using 3D printing, making practical and design improvements with each iteration.</li>
+      </ul>
+      <p>
+        <a href="assets/Trubalance Documentation.pdf" target="_blank" rel="noopener noreferrer">
+          Documentation
+        </a>
+      </p>
+    </div>
+
+    <!-- Flagellum Image Classification -->
+    <div class="project">
+      <h4>Flagellum Image Classification</h4>
+      <p><strong>Skills &amp; Tools:</strong> CNN, Julia, Pluto, Image Processing, Bash</p>
+      
+      <ul>
+        <li>Built a deep learning pipeline to classify 10,000+ bacterial images with high throughput and reproducibility.</li>
+        <li>Designed a streamlined interface for manual labeling, enabling 600+ images/hour for training data generation.</li>
+        <li>Tuned model architectures to boost accuracy and training efficiency, achieving 50%+ accuracy improvements.</li>
+        <li>Experimented with diverse datasets and processing, boosting model accuracy by 30%.</li>
+      </ul>
+      <img src="assets/mosaic.png" alt="Flagellum mosaic" />
+    </div>
+
+    <!-- EEG Seizure Detection -->
+    <div class="project">
+      <h4>EEG Seizure Detection</h4>
+      <p><strong>Skills &amp; Tools:</strong> DWT, Jupyter, SciPy, SVM, PCA</p>
+      <ul>
+        <li>Used machine learning methods to create software that automatically classifies EEG as seizure/non-seizure.</li>
+        <li>Processed the signals two ways: one using DWT (discrete wavelet transform) and the other using PCA.</li>
+        <li>Used SVM to classify EEG signals, achieving 96% accuracy, 90% precision, and 90% recall.</li>
+      </ul>
+      <p>
+        <a href="assets/SVM_Seizure_Detection.pdf" target="_blank" rel="noopener noreferrer">
+          Documentation
+        </a>
+      </p>
+    </div>
+
+  </section>
+
+    </div>
   </body>
 </html>

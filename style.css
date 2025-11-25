@@ -1,1 +1,6 @@
-
+img {
+  max-width: 20%;
+  display: block;
+  margin: 20;             /* removes auto-centering */
+  text-align: left;      /* does nothing to the img itself, but helps */
+}
