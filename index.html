@@ -2,103 +2,488 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Yuta's Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuta Kiami</title>
     <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
-      <div class="centered-container">
-      <!-- Hero section: title + subtitle on photo background -->
+
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Left sidebar TOC -->
+    <nav class="sidebar">
+      <div class="sidebar-brand">Yuta Kiami</div>
+      <ul class="toc">
+        <li><a href="#about" class="toc-link">About</a></li>
+        <li><a href="#resume" class="toc-link">Resume</a></li>
+        <li>
+          <a href="#projects" class="toc-link">Projects</a>
+          <ul class="sub-toc">
+            <li><span class="toc-group-label">Current</span></li>
+            <li><a href="#ssvep" class="toc-link">SSVEP Piano Player</a></li>
+            <li><a href="#trubalance" class="toc-link">TruBalance Stand</a></li>
+            <li><span class="toc-group-label">Past</span></li>
+            <li><a href="#flagellum" class="toc-link">Flagellum Classification</a></li>
+            <li><a href="#eeg-seizure" class="toc-link">EEG Seizure Detection</a></li>
+            <li><a href="#tcr" class="toc-link">TCR-β Pipeline</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main content -->
+    <div class="main-content">
+
+      <!-- Hero -->
       <header class="hero">
         <div class="hero-content">
           <h1>Yuta Kiami</h1>
-          <h2>Engineering • Physics • Computation</h2>
+          <h2>Engineering &bull; Physics &bull; Computation</h2>
         </div>
       </header>
 
-      <!-- Personal bio -->
-      <section id="about">
-        <h3>About Me</h3>
-        <p>
-          As a UCLA student in Bioengineering and Physics, I work at the intersection of computational methods, engineering design, and natural sciences. On campus I have involved myself in hands-on engineering projects, as well as many research experiences that have given me a plethora of technical skills. I enjoy learning and thinking at a theoretical level, and applying science and engineering principles to real world problems, whether that be in ML, signal processing, or engineering design and fabrication. Looking forward, I hope to grow my technical experience through engineering intern roles in these areas.
-        </p>
-      </section>
+      <div class="content-body">
 
-      <!-- Resume link -->
-      <section id="resume">
-        <h3>Resume</h3>
-        <p>
-          <a href="assets/WebsiteResume.pdf" target="_blank" rel="noopener noreferrer">
-            View my resume (PDF)
-          </a>
-        </p>
-      </section>
+        <!-- About -->
+        <section id="about">
+          <h3>About Me</h3>
+          <div class="section-body">
+            <p>
+              As a UCLA student in Bioengineering and Physics, I work at the intersection of computational methods, engineering design, and natural sciences. On campus I have involved myself in hands-on engineering projects, as well as many research experiences that have given me a plethora of technical skills. I enjoy learning and thinking at a theoretical level, and applying science and engineering principles to real world problems, whether that be in ML, signal processing, or engineering design and fabrication. Looking forward, I hope to grow my technical experience through intern roles in these areas.
+            </p>
+          </div>
+        </section>
 
-      <!-- Projects -->
-      <section id="projects">
-    <h3>Projects</h3>
+        <!-- Resume -->
+        <section id="resume">
+          <h3>Resume</h3>
+          <div class="section-body">
+            <p>
+              <a href="assets/WebsiteResume.pdf" target="_blank" rel="noopener noreferrer">View my resume (PDF)</a>
+            </p>
+          </div>
+        </section>
 
-    <!-- TruBalance Stand -->
-    <div class="project">
-      <h4>TruBalance Stand (In Progress)</h4>
-      <p><strong>Skills &amp; Tools:</strong> Constraint-Driven Design, Jupyter, SolidWorks, Prototyping, 3D Printing</p>
-      <ul>
-        <li>Creating a rigid tablet stand defined by a curve that rests at static equilibrium for any angle at which the stand can be placed.</li>
-        <li>Considered physical and geometrical constraints to work out an initial design concept, reducing to only two constraint equations.</li>
-        <li>Used Jupyter to numerically solve for constrained parameters, allowing for easy material and dimensional customizability.</li>
-        <li>Modeled the design in SolidWorks to allow prototyping</li>
-        <li>Currently creating prototypes using 3D printing, making practical and design improvements with each iteration.</li>
-      </ul>
-      <p>
-        <a href="assets/Trubalance Documentation.pdf" target="_blank" rel="noopener noreferrer">
-          Documentation
-        </a>
-      </p>
+        <!-- Projects -->
+        <section id="projects">
+          <h3>Projects</h3>
+
+          <!-- Current Projects -->
+          <div class="project-group" id="current-projects">
+            <button class="group-toggle" aria-expanded="true">
+              <span class="group-toggle-label">Current Projects</span>
+              <span class="group-toggle-count">2</span>
+              <span class="chevron">▾</span>
+            </button>
+            <div class="group-content-wrapper">
+              <div class="group-content">
+
+                <div class="project" id="ssvep">
+                  <h4>SSVEP Brain-Computer Interface Piano Player</h4>
+                  <div class="skills">
+                    <span class="tag">BCI</span>
+                    <span class="tag">EEG</span>
+                    <span class="tag">FBTRCA</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Signal Processing</span>
+                    <span class="tag">UI/UX</span>
+                    <span class="tag">Real-Time Classification</span>
+                  </div>
+                  <ul>
+                    <li>Built a brain-computer interface system allowing users to play piano notes hands-free by gazing at flickering visual stimuli (SSVEP).</li>
+                    <li>Developed an integrated UI combining an EEG data collection interface and a live classification display, enabling seamless transitions between training and performance modes.</li>
+                    <li>Implemented and trained Filter Bank Task-Related Component Analysis (FBTRCA), a state-of-the-art SSVEP decoding algorithm, achieving robust multi-class frequency discrimination.</li>
+                    <li>Designed and tested a real-time classification pipeline capable of decoding gaze-target from ongoing EEG with minimal latency.</li>
+                    <li>Mapped decoded SSVEP frequencies to piano notes, triggering audio playback to create a fully functional BCI musical instrument.</li>
+                    <li>Evaluated classifier performance across subjects and stimulus conditions, iterating on filter bank parameters and epoch lengths to maximize accuracy.</li>
+                  </ul>
+                  <img src="assets/ssvep.png" alt="SSVEP Piano Player interface" />
+                </div>
+
+                <div class="project" id="trubalance">
+                  <h4>TruBalance Stand</h4>
+                  <div class="skills">
+                    <span class="tag">Constraint-Driven Design</span>
+                    <span class="tag">Jupyter</span>
+                    <span class="tag">SolidWorks</span>
+                    <span class="tag">Prototyping</span>
+                    <span class="tag">3D Printing</span>
+                  </div>
+                  <ul>
+                    <li>Creating a rigid tablet stand defined by a curve that rests at static equilibrium for any angle at which the stand can be placed.</li>
+                    <li>Considered physical and geometrical constraints to work out an initial design concept, reducing to only two constraint equations.</li>
+                    <li>Used Jupyter to numerically solve for constrained parameters, allowing for easy material and dimensional customizability.</li>
+                    <li>Modeled the design in SolidWorks to allow prototyping.</li>
+                    <li>Currently creating prototypes using 3D printing, making practical and design improvements with each iteration.</li>
+                  </ul>
+                  <a class="doc-link" href="assets/Trubalance Documentation.pdf" target="_blank" rel="noopener noreferrer">Documentation &rarr;</a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Past Projects -->
+          <div class="project-group" id="past-projects">
+            <button class="group-toggle" aria-expanded="true">
+              <span class="group-toggle-label">Past Projects</span>
+              <span class="group-toggle-count">3</span>
+              <span class="chevron">▾</span>
+            </button>
+            <div class="group-content-wrapper">
+              <div class="group-content">
+
+                <div class="project" id="flagellum">
+                  <h4>Flagellum Image Classification</h4>
+                  <div class="skills">
+                    <span class="tag">CNN</span>
+                    <span class="tag">Julia</span>
+                    <span class="tag">Pluto</span>
+                    <span class="tag">Image Processing</span>
+                    <span class="tag">Bash</span>
+                  </div>
+                  <ul>
+                    <li>Built a deep learning pipeline to classify 10,000+ bacterial images with high throughput and reproducibility.</li>
+                    <li>Designed a streamlined interface for manual labeling, enabling 600+ images/hour for training data generation.</li>
+                    <li>Tuned model architectures to boost accuracy and training efficiency, achieving 50%+ accuracy improvements.</li>
+                    <li>Experimented with diverse datasets and processing, boosting model accuracy by 30%.</li>
+                  </ul>
+                  <img src="assets/mosaic.png" alt="Flagellum mosaic" />
+                </div>
+
+                <div class="project" id="eeg-seizure">
+                  <h4>EEG Seizure Detection</h4>
+                  <div class="skills">
+                    <span class="tag">DWT</span>
+                    <span class="tag">Jupyter</span>
+                    <span class="tag">SciPy</span>
+                    <span class="tag">SVM</span>
+                    <span class="tag">PCA</span>
+                  </div>
+                  <ul>
+                    <li>Used machine learning methods to create software that automatically classifies EEG as seizure/non-seizure.</li>
+                    <li>Processed the signals two ways: one using DWT (discrete wavelet transform) and the other using PCA.</li>
+                    <li>Used SVM to classify EEG signals, achieving 96% accuracy, 90% precision, and 90% recall.</li>
+                  </ul>
+                  <a class="doc-link" href="assets/SVM_Seizure_Detection.pdf" target="_blank" rel="noopener noreferrer">Documentation &rarr;</a>
+                </div>
+
+                <div class="project" id="tcr">
+                  <h4>TCR-&beta; Design Pipeline</h4>
+                  <div class="skills">
+                    <span class="tag">Jupyter</span>
+                    <span class="tag">Bash</span>
+                    <span class="tag">AlphaFold</span>
+                    <span class="tag">OmegaFold</span>
+                    <span class="tag">ESMFold</span>
+                    <span class="tag">Pandas</span>
+                    <span class="tag">NumPy</span>
+                    <span class="tag">Matplotlib</span>
+                  </div>
+                  <ul>
+                    <li>Partnered with a startup and applied my method to design a linker for a TCR-beta structure that could create drug delivery that is more specific, and navigates the body with greater efficiency.</li>
+                    <li>Developed a method to computationally design and evaluate 1300+ protein linkers for TCR complexes using AlphaFold, ESMFold, RoseTTAFold, and OmegaFold, facilitating in vitro testing.</li>
+                    <li>(Reach out for GitHub repository.)</li>
+                  </ul>
+                  <img src="assets/pymol.jpeg" alt="PyMOL protein alignment example" />
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </section>
+      </div>
     </div>
 
-    <!-- Flagellum Image Classification -->
-    <div class="project">
-      <h4>Flagellum Image Classification</h4>
-      <p><strong>Skills &amp; Tools:</strong> CNN, Julia, Pluto, Image Processing, Bash</p>
-      
-      <ul>
-        <li>Built a deep learning pipeline to classify 10,000+ bacterial images with high throughput and reproducibility.</li>
-        <li>Designed a streamlined interface for manual labeling, enabling 600+ images/hour for training data generation.</li>
-        <li>Tuned model architectures to boost accuracy and training efficiency, achieving 50%+ accuracy improvements.</li>
-        <li>Experimented with diverse datasets and processing, boosting model accuracy by 30%.</li>
-      </ul>
-      <img src="assets/mosaic.png" alt="Flagellum mosaic" />
+    <!-- Lightbox (must be in DOM before script runs) -->
+    <div id="lightbox" class="lightbox">
+      <button id="lightbox-close" class="lightbox-close">&times;</button>
+      <img id="lightbox-img" src="" alt="" />
     </div>
 
-    <!-- EEG Seizure Detection -->
-    <div class="project">
-      <h4>EEG Seizure Detection</h4>
-      <p><strong>Skills &amp; Tools:</strong> DWT, Jupyter, SciPy, SVM, PCA</p>
-      <ul>
-        <li>Used machine learning methods to create software that automatically classifies EEG as seizure/non-seizure.</li>
-        <li>Processed the signals two ways: one using DWT (discrete wavelet transform) and the other using PCA.</li>
-        <li>Used SVM to classify EEG signals, achieving 96% accuracy, 90% precision, and 90% recall.</li>
-      </ul>
-      <p>
-        <a href="assets/SVM_Seizure_Detection.pdf" target="_blank" rel="noopener noreferrer">
-          Documentation
-        </a>
-      </p>
-    </div>
-    <div class="project">
-      <h4>TCR-β Design Pipeline</h4>
-      <p><strong>Skills &amp; Tools:</strong> Jupyter, Bash, AlphaFold, OmegaFold, ESMFold, Pandas, Numpy, Matplotlib</p>
-      <ul>
-        <li>Partnered with a startup and applied my method to design a linker for a TCR-beta structure that could create drug delivery that is more specific, and navigates the body with greater efficiency.</li>
-        <li>Developed a method to computationally design and evaluate 1300+ protein linkers for TCR complexes using alphafold, esmfold, roseTTAfold, and omegafold, facilitating in vitro testing.</li>
-        <li>(Reach out for github repository.)</li>
-      </ul>
-      <img src="assets/pymol.jpeg" alt="example align" />
-    </div>
+    <script>
+      // --- Active nav highlighting on scroll ---
+      const tocLinks = document.querySelectorAll('.toc-link');
+      const scrollTargets = [
+        ...document.querySelectorAll('section[id]'),
+        ...document.querySelectorAll('.project[id]')
+      ].sort((a, b) => a.offsetTop - b.offsetTop);
 
+      function updateActiveNav() {
+        const scrollPos = window.scrollY + window.innerHeight * 0.28;
+        let current = scrollTargets[0];
+        scrollTargets.forEach(el => {
+          if (el.offsetTop <= scrollPos) current = el;
+        });
+        tocLinks.forEach(link => link.classList.remove('active'));
+        if (current) {
+          const activeLink = document.querySelector(`.toc-link[href="#${current.id}"]`);
+          if (activeLink) {
+            activeLink.classList.add('active');
+            if (current.classList.contains('project')) {
+              const projectsLink = document.querySelector('.toc-link[href="#projects"]');
+              if (projectsLink) projectsLink.classList.add('active');
+            }
+          }
+        }
+      }
 
-  </section>
+      window.addEventListener('scroll', updateActiveNav, { passive: true });
+      updateActiveNav();
 
-    </div>
+      // --- Fade-in sections that start below the fold ---
+      const sections = document.querySelectorAll('section');
+      sections.forEach(el => {
+        if (el.getBoundingClientRect().top > window.innerHeight) {
+          el.classList.add('will-animate');
+        }
+      });
+
+      const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            fadeObserver.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08 });
+
+      document.querySelectorAll('section.will-animate').forEach(el => fadeObserver.observe(el));
+
+      // --- Collapsible project groups ---
+      document.querySelectorAll('.group-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const group = btn.closest('.project-group');
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', !expanded);
+          group.classList.toggle('collapsed', expanded);
+        });
+      });
+
+      // --- Image wrappers + lightbox ---
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+
+      document.querySelectorAll('.project img').forEach(img => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'img-wrapper';
+        img.parentNode.insertBefore(wrapper, img);
+        wrapper.appendChild(img);
+        const overlay = document.createElement('div');
+        overlay.className = 'img-overlay';
+        overlay.innerHTML = '<span>Show full image</span>';
+        wrapper.appendChild(overlay);
+        wrapper.addEventListener('click', () => {
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt;
+          lightbox.classList.add('open');
+        });
+      });
+
+      document.getElementById('lightbox-close').addEventListener('click', () => {
+        lightbox.classList.remove('open');
+      });
+      lightbox.addEventListener('click', e => {
+        if (e.target === lightbox) lightbox.classList.remove('open');
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') lightbox.classList.remove('open');
+      });
+
+      // --- Galton Board (full-page background) ---
+      const bgCanvas = document.getElementById('bg-canvas');
+      const bgCtx    = bgCanvas.getContext('2d');
+
+      const GB = {
+        BALL_R: 3.5, PEG_R: 3.5,
+        GRAVITY: 0.15, SPAWN_EVERY: 24, MAX_ACTIVE: 60,
+        BALL_COLOR: '#dc2626', PEG_COLOR: '#7c3d12', LANE_COLOR: '#7c3d12'
+      };
+
+      let gbPegs = [], gbBalls = [], gbCols = {}, gbFrame = 0, gbStopped = false;
+      let gbROWS, gbHGap, gbVGap, gbTopY, gbLaneTopY, gbLaneStartX, gbNumBins, gbSlotHeight, gbCenterX;
+
+      function gbSetup() {
+        gbPegs = []; gbBalls = []; gbCols = {};
+        gbStopped = false; gbFrame = 0;
+        const W = bgCanvas.width, H = bgCanvas.height;
+
+        // First peg just above "About Me"
+        const aboutEl = document.getElementById('about');
+        gbTopY = aboutEl
+          ? Math.round(aboutEl.getBoundingClientRect().top + window.scrollY) - 50
+          : 320;
+
+        // Slot area = the 25% extension at the bottom
+        gbSlotHeight = Math.round(H * 0.2);   // canvas = naturalH * 1.25 → extension = 20% of canvas
+        gbLaneTopY   = H - gbSlotHeight;
+
+        // Center on the content area (right of 230px sidebar), not full viewport
+        const SIDEBAR = 230;
+        const contentW  = W - SIDEBAR;
+        const cx        = SIDEBAR + contentW / 2;
+        gbCenterX       = cx;
+
+        // ROWS: H_GAP fills content width (not full viewport)
+        gbROWS   = Math.max(14, Math.min(40, Math.round(contentW / 38)));
+        gbHGap   = contentW / (gbROWS + 1);
+        const boardH = gbLaneTopY - gbTopY;
+        gbVGap   = boardH / Math.max(1, gbROWS - 1);
+
+        // True Galton board: row r has r+1 pegs, starting from 1 peg at top
+        for (let r = 0; r < gbROWS; r++) {
+          const n  = r + 1;
+          const sx = cx - ((n - 1) * gbHGap) / 2;
+          for (let i = 0; i < n; i++)
+            gbPegs.push({ x: sx + i * gbHGap, y: gbTopY + r * gbVGap });
+        }
+
+        // Bins: ROWS+1, centered on content area, filling content width
+        gbNumBins    = gbROWS + 1;
+        gbLaneStartX = cx - (gbNumBins / 2) * gbHGap;
+      }
+
+      const gbBinCX = bin => gbLaneStartX + (bin + 0.5) * gbHGap;
+      const gbNearestBin = x =>
+        Math.max(0, Math.min(gbNumBins - 1, Math.round((x - gbLaneStartX) / gbHGap - 0.5)));
+
+      function gbSettle(ball) {
+        const bin   = gbNearestBin(ball.x);
+        const h     = gbCols[bin] || 0;
+        ball.x      = gbBinCX(bin);
+        ball.y      = bgCanvas.height - GB.BALL_R - 4 - h * GB.BALL_R * 2.2;
+        ball.bin    = bin;
+        gbCols[bin] = h + 1;
+        ball.settled = true; ball.vx = 0; ball.vy = 0;
+      }
+
+      function gbMoveBall(b) {
+        b.vy += GB.GRAVITY; b.vx *= 0.988;
+        b.x  += b.vx;      b.y  += b.vy;
+
+        for (const p of gbPegs) {
+          const dx = b.x - p.x, dy = b.y - p.y, d2 = dx*dx + dy*dy;
+          const minD = GB.PEG_R + GB.BALL_R;
+          if (d2 < minD*minD && d2 > 0) {
+            const d = Math.sqrt(d2), nx = dx/d, ny = dy/d, dot = b.vx*nx + b.vy*ny;
+            b.vx = (b.vx - 2*dot*nx)*0.25 + (Math.random()-0.5)*1.6;
+            b.vy = Math.max(0.8, Math.abs(b.vy - 2*dot*ny)*0.25 + 0.8);
+            b.x  = p.x + nx*(minD+0.5); b.y = p.y + ny*(minD+0.5);
+          }
+        }
+
+        if (b.x < GB.BALL_R)               { b.x = GB.BALL_R;               b.vx =  Math.abs(b.vx)*0.4; }
+        if (b.x > bgCanvas.width-GB.BALL_R) { b.x = bgCanvas.width-GB.BALL_R; b.vx = -Math.abs(b.vx)*0.4; }
+
+        if (b.y > gbLaneTopY) {
+          const bin = gbNearestBin(b.x);
+          b.vx += (gbBinCX(bin) - b.x) * 0.12;
+          b.vx *= 0.78;
+          const ll = gbLaneStartX + GB.BALL_R, lr = gbLaneStartX + gbNumBins*gbHGap - GB.BALL_R;
+          if (b.x < ll) { b.x = ll; b.vx =  Math.abs(b.vx)*0.3; }
+          if (b.x > lr) { b.x = lr; b.vx = -Math.abs(b.vx)*0.3; }
+        }
+
+        const floorY = bgCanvas.height - GB.BALL_R - 4 - (gbCols[gbNearestBin(b.x)]||0)*GB.BALL_R*2.2;
+        if (b.y >= floorY) gbSettle(b);
+      }
+
+      function gbUpdate() {
+        gbFrame++;
+
+        // Spawn if running
+        if (!gbStopped && gbFrame % GB.SPAWN_EVERY === 0 &&
+            gbBalls.filter(b => !b.settled).length < GB.MAX_ACTIVE) {
+          gbBalls.push({
+            x: gbCenterX + (Math.random()-0.5)*4,
+            y: gbTopY - 30, vx: 0, vy: 1.3,
+            settled: false, alpha: 0, age: 0
+          });
+        }
+
+        for (const b of gbBalls) {
+          b.age++;
+          if (b.settled) { b.alpha = Math.min(1, b.alpha + 0.012); continue; }
+          b.alpha = Math.min(1, b.alpha + 0.08);
+          gbMoveBall(b);
+        }
+
+        // Check stop: any bin fills to top of slot area
+        if (!gbStopped) {
+          const maxStack = gbSlotHeight - GB.BALL_R * 3;
+          for (const cnt of Object.values(gbCols)) {
+            if (cnt * GB.BALL_R * 2.2 >= maxStack) { gbStopped = true; break; }
+          }
+        }
+
+        // Keep looping until stopped + all balls settled, then freeze
+        if (gbStopped && !gbBalls.some(b => !b.settled)) return false;
+        return true;
+      }
+
+      function gbDraw() {
+        bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+
+        // Lane walls
+        bgCtx.strokeStyle = GB.LANE_COLOR;
+        bgCtx.lineWidth = 1.5;
+        bgCtx.globalAlpha = 0.32;
+        for (let i = 0; i <= gbNumBins; i++) {
+          const wx = gbLaneStartX + i * gbHGap;
+          bgCtx.beginPath();
+          bgCtx.moveTo(wx, gbLaneTopY);
+          bgCtx.lineTo(wx, bgCanvas.height);
+          bgCtx.stroke();
+        }
+
+        // Pegs
+        bgCtx.fillStyle = GB.PEG_COLOR;
+        bgCtx.globalAlpha = 0.6;
+        for (const p of gbPegs) {
+          bgCtx.beginPath();
+          bgCtx.arc(p.x, p.y, GB.PEG_R, 0, Math.PI*2);
+          bgCtx.fill();
+        }
+
+        // Balls
+        bgCtx.fillStyle = GB.BALL_COLOR;
+        for (const b of gbBalls) {
+          bgCtx.globalAlpha = b.alpha * (b.settled ? 0.80 : 0.90);
+          bgCtx.beginPath();
+          bgCtx.arc(b.x, b.y, GB.BALL_R, 0, Math.PI*2);
+          bgCtx.fill();
+        }
+        bgCtx.globalAlpha = 1;
+      }
+
+      function gbResize() {
+        // Collapse canvas so natural page height is measurable
+        bgCanvas.style.display = 'none';
+        document.body.style.paddingBottom = '0px';
+        document.body.offsetHeight; // force reflow
+
+        const naturalH = document.documentElement.scrollHeight;
+        const ext      = Math.round(naturalH * 0.25);
+        document.body.style.paddingBottom = ext + 'px';
+
+        bgCanvas.style.display = '';
+        bgCanvas.width  = window.innerWidth;
+        bgCanvas.height = naturalH + ext;
+
+        gbSetup();
+      }
+
+      gbResize();
+      window.addEventListener('resize', gbResize);
+
+      (function gbLoop() {
+        const cont = gbUpdate();
+        gbDraw();
+        if (cont) requestAnimationFrame(gbLoop);
+      })();
+    </script>
+
   </body>
 </html>
