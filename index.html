@@ -22,8 +22,10 @@
           <ul class="sub-toc">
             <li><span class="toc-group-label">Current</span></li>
             <li><a href="#ssvep" class="toc-link">SSVEP Piano Player</a></li>
+            <li><a href="#hgt" class="toc-link">Epistasis in Plasmid HGT</a></li>
             <li><a href="#trubalance" class="toc-link">TruBalance Stand</a></li>
             <li><span class="toc-group-label">Past</span></li>
+            <li><a href="#peptide-vae" class="toc-link">Peptide Curvature VAE</a></li>
             <li><a href="#flagellum" class="toc-link">Flagellum Classification</a></li>
             <li><a href="#eeg-seizure" class="toc-link">EEG Seizure Detection</a></li>
             <li><a href="#tcr" class="toc-link">TCR-β Pipeline</a></li>
@@ -73,7 +75,7 @@
           <div class="project-group" id="current-projects">
             <button class="group-toggle" aria-expanded="true">
               <span class="group-toggle-label">Current Projects</span>
-              <span class="group-toggle-count">2</span>
+              <span class="group-toggle-count">3</span>
               <span class="chevron">▾</span>
             </button>
             <div class="group-content-wrapper">
@@ -99,6 +101,30 @@
                     <li>Evaluated classifier performance across subjects and stimulus conditions, iterating on filter bank parameters and epoch lengths to maximize accuracy.</li>
                   </ul>
                   <img src="assets/ssvep.png" alt="SSVEP Piano Player interface" />
+                </div>
+
+                <div class="project" id="hgt">
+                  <h4>Epistasis in Plasmid Horizontal Gene Transfer</h4>
+                  <div class="skills">
+                    <span class="tag">Evolutionary Biology</span>
+                    <span class="tag">NK Landscapes</span>
+                    <span class="tag">Gillespie Algorithm</span>
+                    <span class="tag">Monte Carlo</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Stochastic Simulation</span>
+                    <span class="tag">Epistasis</span>
+                    <span class="tag">Numba</span>
+                    <span class="tag">NumPy</span>
+                    <span class="tag">Pandas</span>
+                  </div>
+                  <ul>
+                    <li>Investigating how epistasis, non-additive interactions between plasmids, shapes the dynamics of horizontal gene transfer (HGT) via plasmids in bacterial populations.</li>
+                    <li>Modeling fitness landscapes using the NK framework, tuning the epistasis parameter K to produce landscapes ranging from smooth and additive to highly rugged and multipeaked.</li>
+                    <li>Simulating population-level evolutionary dynamics using the Gillespie and Monte Carlo algorithms for stochastic kinetics, capturing birth, death, mutation, and plasmid transfer events at the individual level.</li>
+                    <li>Systematically iterating over landscape ruggedness, transfer rate, and population size parameters to map out how HGT interacts with epistatic structure to facilitate or impede adaptation.</li>
+                    <li>Probing whether plasmid-mediated gene transfer acts as an escape mechanism from local fitness peaks on rugged landscapes, and under what epistatic regimes HGT is most evolutionarily advantageous.</li>
+                  </ul>
+                  <img src="assets/HGT.png" alt="Epistasis in Plasmid HGT simulation" />
                 </div>
 
                 <div class="project" id="trubalance">
@@ -128,11 +154,31 @@
           <div class="project-group" id="past-projects">
             <button class="group-toggle" aria-expanded="true">
               <span class="group-toggle-label">Past Projects</span>
-              <span class="group-toggle-count">3</span>
+              <span class="group-toggle-count">4</span>
               <span class="chevron">▾</span>
             </button>
             <div class="group-content-wrapper">
               <div class="group-content">
+
+                <div class="project" id="peptide-vae">
+                  <h4>Peptide Curvature VAE Pipeline</h4>
+                  <div class="skills">
+                    <span class="tag">VAE</span>
+                    <span class="tag">KNN</span>
+                    <span class="tag">Julia</span>
+                    <span class="tag">Bash</span>
+                    <span class="tag">Dimensionality Reduction</span>
+                    <span class="tag">Bioinformatics</span>
+                  </div>
+                  <ul>
+                    <li>Automated a pipeline to splice peptide sequences into overlapping segments of varying lengths, enabling sub-sequence level analysis of membrane curvature affinity.</li>
+                    <li>Passed spliced segments through a Variational Autoencoder (VAE) to produce low-dimensional embeddings encoding the physical and biochemical properties of each peptide fragment.</li>
+                    <li>Applied a K-Nearest Neighbors classifier in the VAE latent space to assign each segment a negative Gaussian curvature (NGC) or positive Gaussian curvature (PGC) affinity score based on proximity to labeled reference peptides.</li>
+                    <li>Visualized classification results across peptide length to provide interpretable, position-resolved curvature profiles for downstream analysis.</li>
+                    <li>Automated the full workflow end-to-end using Julia and Bash scripting, enabling rapid throughput across large peptide libraries.</li>
+                  </ul>
+                  <img src="assets/Zoopeptides.png" alt="Peptide curvature hotspot visualization" />
+                </div>
 
                 <div class="project" id="flagellum">
                   <h4>Flagellum Image Classification</h4>
@@ -430,10 +476,11 @@
         bgCtx.strokeStyle = GB.LANE_COLOR;
         bgCtx.lineWidth = 1.5;
         bgCtx.globalAlpha = 0.32;
-        for (let i = 0; i <= gbNumBins; i++) {
+        const laneLineTopY = gbLaneTopY + 18;
+        for (let i = 1; i <= gbNumBins; i++) {
           const wx = gbLaneStartX + i * gbHGap;
           bgCtx.beginPath();
-          bgCtx.moveTo(wx, gbLaneTopY);
+          bgCtx.moveTo(wx, laneLineTopY);
           bgCtx.lineTo(wx, bgCanvas.height);
           bgCtx.stroke();
         }
@@ -465,7 +512,7 @@
         document.body.offsetHeight; // force reflow
 
         const naturalH = document.documentElement.scrollHeight;
-        const ext      = Math.round(naturalH * 0.25);
+        const ext      = Math.round(naturalH * 0.087);
         document.body.style.paddingBottom = ext + 'px';
 
         bgCanvas.style.display = '';
