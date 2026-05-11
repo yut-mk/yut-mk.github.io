@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yuta Kiami</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
   </head>
 
@@ -62,7 +65,7 @@
           <h3>Resume</h3>
           <div class="section-body">
             <p>
-              <a href="assets/WebsiteResume.pdf" target="_blank" rel="noopener noreferrer">View my resume (PDF)</a>
+              <a href="assets/Yuta_M_Kiami.pdf" target="_blank" rel="noopener noreferrer">View my resume (PDF)</a>
             </p>
           </div>
         </section>
@@ -96,11 +99,11 @@
                     <li>Built a brain-computer interface system allowing users to play piano notes hands-free by gazing at flickering visual stimuli (SSVEP).</li>
                     <li>Developed an integrated UI combining an EEG data collection interface and a live classification display, enabling seamless transitions between training and performance modes.</li>
                     <li>Implemented and trained Filter Bank Task-Related Component Analysis (FBTRCA), a state-of-the-art SSVEP decoding algorithm, achieving robust multi-class frequency discrimination.</li>
-                    <li>Designed and tested a real-time classification pipeline capable of decoding gaze-target from ongoing EEG with minimal latency.</li>
-                    <li>Mapped decoded SSVEP frequencies to piano notes, triggering audio playback to create a fully functional BCI musical instrument.</li>
-                    <li>Evaluated classifier performance across subjects and stimulus conditions, iterating on filter bank parameters and epoch lengths to maximize accuracy.</li>
+                    <li>Mapped decoded SSVEP frequencies to piano notes, triggering audio playback with EMG to create a fully functional BCI musical instrument.</li>
+                    <li>Iterated filter bank parameters and epoch lengths to maximize accuracy.</li>
                   </ul>
-                  <img src="assets/ssvep.png" alt="SSVEP Piano Player interface" />
+                  <video src="assets/ssvepdemo.mov" poster="assets/ssvep.png" controls playsinline muted></video>
+                  <a class="doc-link" href="assets/UCLA CruX Comp Team Presentation.pdf" target="_blank" rel="noopener noreferrer">CruX Competition Presentation &rarr;</a>
                 </div>
 
                 <div class="project" id="hgt">
@@ -345,7 +348,7 @@
       const GB = {
         BALL_R: 3.5, PEG_R: 3.5,
         GRAVITY: 0.15, SPAWN_EVERY: 24, MAX_ACTIVE: 60,
-        BALL_COLOR: '#dc2626', PEG_COLOR: '#7c3d12', LANE_COLOR: '#7c3d12'
+        BALL_COLOR: '#3060C0', PEG_COLOR: '#9AAAB8', LANE_COLOR: '#9AAAB8'
       };
 
       let gbPegs = [], gbBalls = [], gbCols = {}, gbFrame = 0, gbStopped = false;
