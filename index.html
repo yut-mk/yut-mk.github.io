@@ -479,8 +479,11 @@
 
         // Pit ball physics — frozen balls are static, active balls match galton speed
         for (const b of gbPitBalls) {
-          const belowFloor = b.y > gbPitBottomY - GB.BALL_R;
-          b.alpha = belowFloor
+          const dLv = (b.x - gbPitLeftX)  * gbPitNxL + (b.y - gbPitTopY) * gbPitNyL;
+          const dRv = (b.x - gbPitRightX) * gbPitNxR + (b.y - gbPitTopY) * gbPitNyR;
+          const outsideFunnel = b.y >= gbPitTopY &&
+            (dLv < 0 || dRv < 0 || b.y > gbPitBottomY - GB.BALL_R);
+          b.alpha = outsideFunnel
             ? Math.max(0, b.alpha - 0.2)
             : Math.min(1, b.alpha + 0.08);
           if (b.frozen) continue;
