@@ -341,47 +341,53 @@
         if (e.key === 'Escape') lightbox.classList.remove('open');
       });
 
-      // --- Galton Board (full-page background) ---
+      // --- Galton Board + Ball Pit (full-page background) ---
       const bgCanvas = document.getElementById('bg-canvas');
       const bgCtx    = bgCanvas.getContext('2d');
 
       const GB = {
         BALL_R: 3.0, PEG_R: 3.0,
         GRAVITY: 0.15, SPAWN_EVERY: 30, MAX_ACTIVE: 44,
-        BALL_COLOR: '#3060C0', PEG_COLOR: '#9AAAB8', LANE_COLOR: '#9AAAB8'
+        BALL_COLOR: '#3060C0', PEG_COLOR: '#9AAAB8', LANE_COLOR: '#9AAAB8',
+        PIT_H: 180, PIT_BALLS: 120, GATE_W: 16,
       };
 
       let gbPegs = [], gbBalls = [], gbCols = {}, gbFrame = 0, gbStopped = false;
       let gbROWS, gbHGap, gbVGap, gbTopY, gbLaneTopY, gbLaneStartX, gbNumBins, gbSlotHeight, gbCenterX;
+      let gbPitBalls = [], gbPitTopY = 0, gbPitBottomY = 0, gbPitLeftX = 0, gbPitRightX = 0;
+      let gbPitNxL = 0, gbPitNyL = 0, gbPitNxR = 0, gbPitNyR = 0;
 
       function gbSetup() {
-        gbPegs = []; gbBalls = []; gbCols = {};
+        gbPegs = []; gbBalls = []; gbCols = {}; gbPitBalls = [];
         gbStopped = false; gbFrame = 0;
         const W = bgCanvas.width, H = bgCanvas.height;
 
-        // First peg just above "About Me"
-        const aboutEl = document.getElementById('about');
-        gbTopY = aboutEl
-          ? Math.round(aboutEl.getBoundingClientRect().top + window.scrollY) - 50
-          : 320;
+        // Pit sits just below the hero banner
+        const heroEl = document.querySelector('.hero');
+        gbPitTopY    = heroEl
+          ? Math.round(heroEl.getBoundingClientRect().bottom + window.scrollY + 15)
+          : 300;
+        gbPitBottomY = gbPitTopY + GB.PIT_H;
 
-        // Slot area = the 25% extension at the bottom
-        gbSlotHeight = Math.round(H * 0.2);   // canvas = naturalH * 1.25 → extension = 20% of canvas
+        // Galton board first peg is below the pit
+        gbTopY = gbPitBottomY + 40;
+
+        // Slot area = 20% extension at bottom
+        gbSlotHeight = Math.round(H * 0.2);
         gbLaneTopY   = H - gbSlotHeight;
 
-        // Center on the content area (right of 230px sidebar), not full viewport
+        // Center on the content area (right of 230px sidebar)
         const SIDEBAR = 230;
         const contentW  = W - SIDEBAR;
         const cx        = SIDEBAR + contentW / 2;
         gbCenterX       = cx;
 
-        // ROWS: H_GAP fills content width (not full viewport)
         gbROWS   = Math.max(14, Math.min(40, Math.round(contentW / 38)));
         gbHGap   = contentW / (gbROWS + 1);
         const boardH = gbLaneTopY - gbTopY;
         gbVGap   = boardH / Math.max(1, gbROWS - 1);
 
-        // True Galton board: row r has r+1 pegs, starting from 1 peg at top
+        // True Galton board pegs
         for (let r = 0; r < gbROWS; r++) {
           const n  = r + 1;
           const sx = cx - ((n - 1) * gbHGap) / 2;
@@ -389,9 +395,22 @@
             gbPegs.push({ x: sx + i * gbHGap, y: gbTopY + r * gbVGap });
         }
 
-        // Bins: ROWS+1, centered on content area, filling content width
         gbNumBins    = gbROWS + 1;
         gbLaneStartX = cx - (gbNumBins / 2) * gbHGap;
+        gbPitLeftX   = gbLaneStartX;
+        gbPitRightX  = gbLaneStartX + gbNumBins * gbHGap;
+
+        // Inward unit normals for the two slanted funnel walls
+        const gH = GB.GATE_W / 2;
+        const dxL = gbCenterX - gH - gbPitLeftX,  dyL = gbPitBottomY - gbPitTopY;
+        const lenL = Math.sqrt(dxL*dxL + dyL*dyL);
+        gbPitNxL =  dyL / lenL;   // +x (inward right)
+        gbPitNyL = -dxL / lenL;   // -y (inward up)
+
+        const dxR = gbCenterX + gH - gbPitRightX,  dyR = gbPitBottomY - gbPitTopY;
+        const lenR = Math.sqrt(dxR*dxR + dyR*dyR);
+        gbPitNxR = -dyR / lenR;   // -x (inward left)
+        gbPitNyR =  dxR / lenR;   // -y (inward up, dxR<0)
       }
 
       const gbBinCX = bin => gbLaneStartX + (bin + 0.5) * gbHGap;
@@ -442,16 +461,110 @@
       function gbUpdate() {
         gbFrame++;
 
-        // Spawn if running
+        // --- Pit: fill with balls, then trickle at 2x galton rate ---
+        const spawnPitBall = () => {
+          const margin = GB.BALL_R + 4;
+          gbPitBalls.push({
+            x: gbPitLeftX + margin + Math.random() * (gbPitRightX - gbPitLeftX - margin * 2),
+            y: gbPitTopY - GB.BALL_R,
+            vx: (Math.random() - 0.5) * 2, vy: 0, alpha: 0,
+            overlapStreak: 0, frozen: false, prevVx: 0, prevVy: 0, dirChange: 0,
+          });
+        };
+        if (gbPitBalls.length < GB.PIT_BALLS && gbFrame % 2 === 0) {
+          spawnPitBall();
+        } else if (gbPitBalls.length >= GB.PIT_BALLS && gbFrame % (GB.SPAWN_EVERY / 2 | 0) === 0) {
+          spawnPitBall();
+        }
+
+        // Pit ball physics — frozen balls are static, active balls match galton speed
+        for (const b of gbPitBalls) {
+          const belowFloor = b.y > gbPitBottomY - GB.BALL_R;
+          b.alpha = belowFloor
+            ? Math.max(0, b.alpha - 0.2)
+            : Math.min(1, b.alpha + 0.08);
+          if (b.frozen) continue;
+          b.vy += GB.GRAVITY;
+          b.vx *= 0.96;
+          b.vy *= 0.96;
+          b.x  += b.vx;
+          b.y  += b.vy;
+
+          // Left slanted funnel wall
+          const dL = (b.x - gbPitLeftX) * gbPitNxL + (b.y - gbPitTopY) * gbPitNyL;
+          if (dL < GB.BALL_R) {
+            b.x += gbPitNxL * (GB.BALL_R - dL);
+            b.y += gbPitNyL * (GB.BALL_R - dL);
+            const vn = b.vx * gbPitNxL + b.vy * gbPitNyL;
+            if (vn < 0) { b.vx -= vn * gbPitNxL; b.vy -= vn * gbPitNyL; }
+          }
+
+          // Right slanted funnel wall
+          const dR = (b.x - gbPitRightX) * gbPitNxR + (b.y - gbPitTopY) * gbPitNyR;
+          if (dR < GB.BALL_R) {
+            b.x += gbPitNxR * (GB.BALL_R - dR);
+            b.y += gbPitNyR * (GB.BALL_R - dR);
+            const vn = b.vx * gbPitNxR + b.vy * gbPitNyR;
+            if (vn < 0) { b.vx -= vn * gbPitNxR; b.vy -= vn * gbPitNyR; }
+          }
+
+          // Floor at pit bottom
+          if (b.y > gbPitBottomY - GB.BALL_R) {
+            b.y = gbPitBottomY - GB.BALL_R;
+            b.vy = 0; b.vx *= 0.5;
+          }
+
+          // Track velocity direction change (rolling = stable direction = low dirChange)
+          const spd = Math.hypot(b.vx, b.vy), prevSpd = Math.hypot(b.prevVx, b.prevVy);
+          b.dirChange = (spd > 0.05 && prevSpd > 0.05)
+            ? 1 - Math.max(-1, Math.min(1, (b.vx*b.prevVx + b.vy*b.prevVy) / (spd * prevSpd)))
+            : 0;
+          b.prevVx = b.vx; b.prevVy = b.vy;
+        }
+
+        // Ball-ball separation — 6 passes; frozen balls act as static obstacles
+        const gbPitOverlapped = new Set();
+        for (let pass = 0; pass < 6; pass++) {
+          for (let i = 0; i < gbPitBalls.length; i++) {
+            for (let j = i + 1; j < gbPitBalls.length; j++) {
+              const a = gbPitBalls[i], b = gbPitBalls[j];
+              const dx = b.x - a.x, dy = b.y - a.y;
+              const d2 = dx * dx + dy * dy;
+              const minD = GB.BALL_R * 2;
+              if (d2 < minD * minD && d2 > 0.0001) {
+                const d = Math.sqrt(d2), nx = dx / d, ny = dy / d, ov = minD - d;
+                gbPitOverlapped.add(i); gbPitOverlapped.add(j);
+                if      (!a.frozen && !b.frozen) { a.x -= nx*ov*0.5; a.y -= ny*ov*0.5; b.x += nx*ov*0.5; b.y += ny*ov*0.5; }
+                else if (!a.frozen)              { a.x -= nx*ov;     a.y -= ny*ov; }
+                else if (!b.frozen)              { b.x += nx*ov;     b.y += ny*ov; }
+              }
+            }
+          }
+        }
+
+        // Freeze any ball overlapping for 5+ consecutive frames
+        for (let i = 0; i < gbPitBalls.length; i++) {
+          const b = gbPitBalls[i];
+          if (gbPitOverlapped.has(i)) {
+            b.overlapStreak++;
+            if (b.overlapStreak >= 200 && b.dirChange >= 0.3) { b.frozen = true; b.vx = 0; b.vy = 0; }
+          } else {
+            b.overlapStreak = 0;
+            b.frozen = false;
+          }
+        }
+
+        // --- Galton board: independent spawn (same as original) ---
         if (!gbStopped && gbFrame % GB.SPAWN_EVERY === 0 &&
             gbBalls.filter(b => !b.settled).length < GB.MAX_ACTIVE) {
           gbBalls.push({
-            x: gbCenterX + (Math.random()-0.5)*4,
+            x: gbCenterX + (Math.random() - 0.5) * 4,
             y: gbTopY - 30, vx: 0, vy: 1.3,
-            settled: false, alpha: 0, age: 0
+            settled: false, alpha: 0, age: 0,
           });
         }
 
+        // Galton ball update
         for (const b of gbBalls) {
           b.age++;
           if (b.settled) { b.alpha = Math.min(1, b.alpha + 0.012); continue; }
@@ -467,18 +580,46 @@
           }
         }
 
-        // Keep looping until stopped + all balls settled, then freeze
         if (gbStopped && !gbBalls.some(b => !b.settled)) return false;
         return true;
       }
 
       function gbDraw() {
         bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+        const gateHalf = GB.GATE_W / 2;
 
-        // Lane walls
+        // Funnel walls (slanted inward from each top corner to gate)
         bgCtx.strokeStyle = GB.LANE_COLOR;
         bgCtx.lineWidth = 1.5;
-        bgCtx.globalAlpha = 0.32;
+        bgCtx.globalAlpha = 1.0;
+        bgCtx.beginPath();
+        bgCtx.moveTo(gbPitLeftX,  gbPitTopY);
+        bgCtx.lineTo(gbCenterX - gateHalf, gbPitBottomY);
+        bgCtx.moveTo(gbPitRightX, gbPitTopY);
+        bgCtx.lineTo(gbCenterX + gateHalf, gbPitBottomY);
+        bgCtx.stroke();
+
+        // Drop tube from gate down to first peg row
+        bgCtx.beginPath();
+        bgCtx.moveTo(gbCenterX - gateHalf, gbPitBottomY);
+        bgCtx.lineTo(gbCenterX - gateHalf, gbTopY);
+        bgCtx.moveTo(gbCenterX + gateHalf, gbPitBottomY);
+        bgCtx.lineTo(gbCenterX + gateHalf, gbTopY);
+        bgCtx.stroke();
+
+        // Pit balls
+        bgCtx.fillStyle = GB.BALL_COLOR;
+        for (const b of gbPitBalls) {
+          bgCtx.globalAlpha = b.alpha;
+          bgCtx.beginPath();
+          bgCtx.arc(b.x, b.y, GB.BALL_R, 0, Math.PI * 2);
+          bgCtx.fill();
+        }
+
+        // Lane walls (galton board bins)
+        bgCtx.strokeStyle = GB.LANE_COLOR;
+        bgCtx.lineWidth = 1.5;
+        bgCtx.globalAlpha = 1.0;
         const laneLineTopY = gbLaneTopY + 18;
         for (let i = 1; i <= gbNumBins; i++) {
           const wx = gbLaneStartX + i * gbHGap;
@@ -490,17 +631,17 @@
 
         // Pegs
         bgCtx.fillStyle = GB.PEG_COLOR;
-        bgCtx.globalAlpha = 0.6;
+        bgCtx.globalAlpha = 1.0;
         for (const p of gbPegs) {
           bgCtx.beginPath();
           bgCtx.arc(p.x, p.y, GB.PEG_R, 0, Math.PI*2);
           bgCtx.fill();
         }
 
-        // Balls
+        // Galton balls
         bgCtx.fillStyle = GB.BALL_COLOR;
         for (const b of gbBalls) {
-          bgCtx.globalAlpha = b.alpha * (b.settled ? 0.80 : 0.90);
+          bgCtx.globalAlpha = b.alpha;
           bgCtx.beginPath();
           bgCtx.arc(b.x, b.y, GB.BALL_R, 0, Math.PI*2);
           bgCtx.fill();
