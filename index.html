@@ -6,7 +6,7 @@
     <title>Yuta Kiami</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
   </head>
 
@@ -17,30 +17,61 @@
     <!-- Left sidebar TOC -->
     <nav class="sidebar">
       <div class="sidebar-brand">Yuta Kiami</div>
-      <ul class="toc">
-        <li><a href="#about" class="toc-link">About</a></li>
-        <li><a href="#resume" class="toc-link">Resume</a></li>
-        <li>
-          <a href="#projects" class="toc-link">Projects</a>
-          <ul class="sub-toc">
-            <li><span class="toc-group-label">Current</span></li>
-            <li><a href="#ssvep" class="toc-link">SSVEP Piano Player</a></li>
-            <li><a href="#hgt" class="toc-link">Epistasis in Plasmid HGT</a></li>
-            <li><a href="#trubalance" class="toc-link">TruBalance Stand</a></li>
-            <li><span class="toc-group-label">Past</span></li>
-            <li><a href="#peptide-vae" class="toc-link">Peptide Curvature VAE</a></li>
-            <li><a href="#flagellum" class="toc-link">Flagellum Classification</a></li>
-            <li><a href="#eeg-seizure" class="toc-link">EEG Seizure Detection</a></li>
-            <li><a href="#tcr" class="toc-link">TCR-β Pipeline</a></li>
+      <div class="sidebar-nav-wrap">
+
+        <!-- Portfolio nav -->
+        <div id="nav-portfolio" class="sidebar-nav active">
+          <ul class="toc">
+            <li><a href="#about" class="toc-link">About</a></li>
+            <li>
+              <a href="#projects" class="toc-link">Projects</a>
+              <ul class="sub-toc">
+                <li><span class="toc-group-label">Current</span></li>
+                <li><a href="#ssvep" class="toc-link">SSVEP Piano Player</a></li>
+                <li><a href="#hgt" class="toc-link">Epistasis in Plasmid HGT</a></li>
+                <li><a href="#trubalance" class="toc-link">TruBalance Stand</a></li>
+                <li><span class="toc-group-label">Past</span></li>
+                <li><a href="#peptide-vae" class="toc-link">Peptide Curvature VAE</a></li>
+                <li><a href="#flagellum" class="toc-link">Flagellum Classification</a></li>
+                <li><a href="#eeg-seizure" class="toc-link">EEG Seizure Detection</a></li>
+                <li><a href="#tcr" class="toc-link">TCR-β Pipeline</a></li>
+              </ul>
+            </li>
           </ul>
-        </li>
-      </ul>
+        </div>
+
+        <!-- Resume nav -->
+        <div id="nav-resume" class="sidebar-nav inactive">
+          <ul class="toc">
+            <li><a href="#about" class="toc-link">About</a></li>
+            <li><a href="#education" class="toc-link">Education</a></li>
+            <li><a href="#technical-skills" class="toc-link">Skills</a></li>
+            <li>
+              <a href="#professional-experience" class="toc-link">Experience</a>
+              <ul class="sub-toc">
+                <li><a href="#wang-lab" class="toc-link">Wang Research Group</a></li>
+                <li><a href="#wong-lab" class="toc-link">Wong Laboratory</a></li>
+                <li><a href="#optofluidics" class="toc-link">Optofluidics Lab</a></li>
+                <li><a href="#fred-hutch" class="toc-link">Fred Hutch</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#leadership" class="toc-link">Leadership</a>
+              <ul class="sub-toc">
+                <li><a href="#crux" class="toc-link">CruX UCLA</a></li>
+                <li><a href="#samueli" class="toc-link">Samueli Engineering</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+      </div>
     </nav>
 
     <!-- Main content -->
     <div class="main-content">
 
-      <!-- Hero -->
+      <!-- Hero (shared) -->
       <header class="hero">
         <div class="hero-content">
           <h1>Yuta Kiami</h1>
@@ -50,7 +81,7 @@
 
       <div class="content-body">
 
-        <!-- About -->
+        <!-- About (always visible) -->
         <section id="about">
           <h3>About Me</h3>
           <div class="section-body">
@@ -58,191 +89,487 @@
               I'm a third-year student at UCLA studying Physics and Bioengineering, working at the intersection of computational methods, engineering design, and the natural sciences. I enjoy learning and thinking at the scientific level while applying my knowledge and skills to solve real-world problems, whether that's better understanding the physics of antimicrobial peptides with ML, or restoring music playing for those who have lost hand mobility. Looking forward, I hope to grow my technical experience through industry roles with teams building something new. Outside the lab, I play cello, enjoy cooking, and spend as much time as I can skiing or outdoors.
             </p>
           </div>
-        </section>
-
-        <!-- Resume -->
-        <section id="resume">
-          <h3>Resume</h3>
-          <div class="section-body">
-            <p>
-              <a href="assets/Yuta_M_Kiami.pdf" target="_blank" rel="noopener noreferrer">View my resume (PDF)</a>
-            </p>
+          <div class="tab-switcher">
+            <button class="tab-btn active" data-tab="portfolio">Project Portfolio</button>
+            <button class="tab-btn" data-tab="resume">Resume</button>
           </div>
         </section>
 
-        <!-- Projects -->
-        <section id="projects">
-          <h3>Projects</h3>
+        <!-- ── Portfolio tab ── -->
+        <div id="tab-portfolio" class="tab-content active">
 
-          <!-- Current Projects -->
-          <div class="project-group" id="current-projects">
-            <button class="group-toggle" aria-expanded="true">
-              <span class="group-toggle-label">Current Projects</span>
-              <span class="group-toggle-count">3</span>
-              <span class="chevron">▾</span>
-            </button>
-            <div class="group-content-wrapper">
-              <div class="group-content">
+          <section id="projects">
+            <h3>Projects</h3>
 
-                <div class="project" id="ssvep">
-                  <h4>SSVEP Brain-Computer Interface Piano Player</h4>
-                  <div class="skills">
-                    <span class="tag">BCI</span>
-                    <span class="tag">EEG</span>
-                    <span class="tag">FBTRCA</span>
-                    <span class="tag">Python</span>
-                    <span class="tag">Signal Processing</span>
-                    <span class="tag">UI/UX</span>
-                    <span class="tag">Real-Time Classification</span>
+            <!-- Current Projects -->
+            <div class="project-group" id="current-projects">
+              <button class="group-toggle" aria-expanded="true">
+                <span class="group-toggle-label">Current Projects</span>
+                <span class="group-toggle-count">3</span>
+                <span class="chevron">▾</span>
+              </button>
+              <div class="group-content-wrapper">
+                <div class="group-content">
+
+                  <div class="project" id="ssvep">
+                    <h4>SSVEP Brain-Computer Interface Piano Player</h4>
+                    <div class="skills">
+                      <span class="tag">BCI</span>
+                      <span class="tag">EEG</span>
+                      <span class="tag">FBTRCA</span>
+                      <span class="tag">Python</span>
+                      <span class="tag">Signal Processing</span>
+                      <span class="tag">UI/UX</span>
+                      <span class="tag">Real-Time Classification</span>
+                    </div>
+                    <ul>
+                      <li>Built a brain-computer interface system allowing users to play piano notes hands-free by gazing at flickering visual stimuli (SSVEP).</li>
+                      <li>Developed an integrated UI combining an EEG data collection interface and a live classification display, enabling seamless transitions between training and performance modes.</li>
+                      <li>Implemented and trained Filter Bank Task-Related Component Analysis (FBTRCA), a state-of-the-art SSVEP decoding algorithm, achieving robust multi-class frequency discrimination.</li>
+                      <li>Mapped decoded SSVEP frequencies to piano notes, triggering audio playback with EMG to create a fully functional BCI musical instrument.</li>
+                      <li>Iterated filter bank parameters and epoch lengths to maximize accuracy.</li>
+                    </ul>
+                    <video src="assets/ssvepdemo.mov" poster="assets/ssvep.png" controls playsinline muted></video>
+                    <a class="doc-link" href="assets/UCLA CruX Comp Team Presentation.pdf" target="_blank" rel="noopener noreferrer">CruX Competition Presentation &rarr;</a>
                   </div>
-                  <ul>
-                    <li>Built a brain-computer interface system allowing users to play piano notes hands-free by gazing at flickering visual stimuli (SSVEP).</li>
-                    <li>Developed an integrated UI combining an EEG data collection interface and a live classification display, enabling seamless transitions between training and performance modes.</li>
-                    <li>Implemented and trained Filter Bank Task-Related Component Analysis (FBTRCA), a state-of-the-art SSVEP decoding algorithm, achieving robust multi-class frequency discrimination.</li>
-                    <li>Mapped decoded SSVEP frequencies to piano notes, triggering audio playback with EMG to create a fully functional BCI musical instrument.</li>
-                    <li>Iterated filter bank parameters and epoch lengths to maximize accuracy.</li>
-                  </ul>
-                  <video src="assets/ssvepdemo.mov" poster="assets/ssvep.png" controls playsinline muted></video>
-                  <a class="doc-link" href="assets/UCLA CruX Comp Team Presentation.pdf" target="_blank" rel="noopener noreferrer">CruX Competition Presentation &rarr;</a>
-                </div>
 
-                <div class="project" id="hgt">
-                  <h4>Epistasis in Plasmid Horizontal Gene Transfer</h4>
-                  <div class="skills">
-                    <span class="tag">Evolutionary Biology</span>
-                    <span class="tag">NK Landscapes</span>
-                    <span class="tag">Gillespie Algorithm</span>
-                    <span class="tag">Monte Carlo</span>
-                    <span class="tag">Python</span>
-                    <span class="tag">Stochastic Simulation</span>
-                    <span class="tag">Epistasis</span>
-                    <span class="tag">Numba</span>
-                    <span class="tag">NumPy</span>
-                    <span class="tag">Pandas</span>
+                  <div class="project" id="hgt">
+                    <h4>Epistasis in Plasmid Horizontal Gene Transfer</h4>
+                    <div class="skills">
+                      <span class="tag">Evolutionary Biology</span>
+                      <span class="tag">NK Landscapes</span>
+                      <span class="tag">Gillespie Algorithm</span>
+                      <span class="tag">Monte Carlo</span>
+                      <span class="tag">Python</span>
+                      <span class="tag">Stochastic Simulation</span>
+                      <span class="tag">Epistasis</span>
+                      <span class="tag">Numba</span>
+                      <span class="tag">NumPy</span>
+                      <span class="tag">Pandas</span>
+                    </div>
+                    <ul>
+                      <li>Investigating how epistasis, non-additive interactions between plasmids, shapes the dynamics of horizontal gene transfer (HGT) via plasmids in bacterial populations.</li>
+                      <li>Modeling fitness landscapes using the NK framework, tuning the epistasis parameter K to produce landscapes ranging from smooth and additive to highly rugged and multipeaked.</li>
+                      <li>Simulating population-level evolutionary dynamics using the Gillespie and Monte Carlo algorithms for stochastic kinetics, capturing birth, death, mutation, and plasmid transfer events at the individual level.</li>
+                      <li>Systematically iterating over landscape ruggedness, transfer rate, and population size parameters to map out how HGT interacts with epistatic structure to facilitate or impede adaptation.</li>
+                      <li>Probing whether plasmid-mediated gene transfer acts as an escape mechanism from local fitness peaks on rugged landscapes, and under what epistatic regimes HGT is most evolutionarily advantageous.</li>
+                    </ul>
+                    <img src="assets/HGT.png" alt="Epistasis in Plasmid HGT simulation" />
                   </div>
-                  <ul>
-                    <li>Investigating how epistasis, non-additive interactions between plasmids, shapes the dynamics of horizontal gene transfer (HGT) via plasmids in bacterial populations.</li>
-                    <li>Modeling fitness landscapes using the NK framework, tuning the epistasis parameter K to produce landscapes ranging from smooth and additive to highly rugged and multipeaked.</li>
-                    <li>Simulating population-level evolutionary dynamics using the Gillespie and Monte Carlo algorithms for stochastic kinetics, capturing birth, death, mutation, and plasmid transfer events at the individual level.</li>
-                    <li>Systematically iterating over landscape ruggedness, transfer rate, and population size parameters to map out how HGT interacts with epistatic structure to facilitate or impede adaptation.</li>
-                    <li>Probing whether plasmid-mediated gene transfer acts as an escape mechanism from local fitness peaks on rugged landscapes, and under what epistatic regimes HGT is most evolutionarily advantageous.</li>
-                  </ul>
-                  <img src="assets/HGT.png" alt="Epistasis in Plasmid HGT simulation" />
-                </div>
 
-                <div class="project" id="trubalance">
-                  <h4>TruBalance Stand</h4>
-                  <div class="skills">
-                    <span class="tag">Constraint-Driven Design</span>
-                    <span class="tag">Jupyter</span>
-                    <span class="tag">SolidWorks</span>
-                    <span class="tag">Prototyping</span>
-                    <span class="tag">3D Printing</span>
+                  <div class="project" id="trubalance">
+                    <h4>TruBalance Stand</h4>
+                    <div class="skills">
+                      <span class="tag">Constraint-Driven Design</span>
+                      <span class="tag">Jupyter</span>
+                      <span class="tag">SolidWorks</span>
+                      <span class="tag">Prototyping</span>
+                      <span class="tag">3D Printing</span>
+                    </div>
+                    <ul>
+                      <li>Creating a rigid tablet stand defined by a curve that rests at static equilibrium for any angle at which the stand can be placed.</li>
+                      <li>Considered physical and geometrical constraints to work out an initial design concept, reducing to only two constraint equations.</li>
+                      <li>Used Jupyter to numerically solve for constrained parameters, allowing for easy material and dimensional customizability.</li>
+                      <li>Modeled the design in SolidWorks to allow prototyping.</li>
+                      <li>Currently creating prototypes using 3D printing, making practical and design improvements with each iteration.</li>
+                    </ul>
+                    <a class="doc-link" href="assets/Trubalance Documentation.pdf" target="_blank" rel="noopener noreferrer">Documentation &rarr;</a>
                   </div>
-                  <ul>
-                    <li>Creating a rigid tablet stand defined by a curve that rests at static equilibrium for any angle at which the stand can be placed.</li>
-                    <li>Considered physical and geometrical constraints to work out an initial design concept, reducing to only two constraint equations.</li>
-                    <li>Used Jupyter to numerically solve for constrained parameters, allowing for easy material and dimensional customizability.</li>
-                    <li>Modeled the design in SolidWorks to allow prototyping.</li>
-                    <li>Currently creating prototypes using 3D printing, making practical and design improvements with each iteration.</li>
-                  </ul>
-                  <a class="doc-link" href="assets/Trubalance Documentation.pdf" target="_blank" rel="noopener noreferrer">Documentation &rarr;</a>
-                </div>
 
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Past Projects -->
-          <div class="project-group" id="past-projects">
-            <button class="group-toggle" aria-expanded="true">
-              <span class="group-toggle-label">Past Projects</span>
-              <span class="group-toggle-count">4</span>
-              <span class="chevron">▾</span>
-            </button>
-            <div class="group-content-wrapper">
-              <div class="group-content">
+            <!-- Past Projects -->
+            <div class="project-group" id="past-projects">
+              <button class="group-toggle" aria-expanded="true">
+                <span class="group-toggle-label">Past Projects</span>
+                <span class="group-toggle-count">4</span>
+                <span class="chevron">▾</span>
+              </button>
+              <div class="group-content-wrapper">
+                <div class="group-content">
 
-                <div class="project" id="peptide-vae">
-                  <h4>Peptide Curvature VAE Pipeline</h4>
-                  <div class="skills">
-                    <span class="tag">VAE</span>
-                    <span class="tag">KNN</span>
-                    <span class="tag">Julia</span>
-                    <span class="tag">Bash</span>
-                    <span class="tag">Dimensionality Reduction</span>
-                    <span class="tag">Bioinformatics</span>
+                  <div class="project" id="peptide-vae">
+                    <h4>Peptide Curvature VAE Pipeline</h4>
+                    <div class="skills">
+                      <span class="tag">VAE</span>
+                      <span class="tag">KNN</span>
+                      <span class="tag">Julia</span>
+                      <span class="tag">Bash</span>
+                      <span class="tag">Dimensionality Reduction</span>
+                      <span class="tag">Bioinformatics</span>
+                    </div>
+                    <ul>
+                      <li>Automated a pipeline to splice peptide sequences into overlapping segments of varying lengths, enabling sub-sequence level analysis of membrane curvature affinity.</li>
+                      <li>Passed spliced segments through a Variational Autoencoder (VAE) to produce low-dimensional embeddings encoding the physical and biochemical properties of each peptide fragment.</li>
+                      <li>Applied a K-Nearest Neighbors classifier in the VAE latent space to assign each segment a negative Gaussian curvature (NGC) or positive Gaussian curvature (PGC) affinity score based on proximity to labeled reference peptides.</li>
+                      <li>Visualized classification results across peptide length to provide interpretable, position-resolved curvature profiles for downstream analysis.</li>
+                      <li>Automated the full workflow end-to-end using Julia and Bash scripting, enabling rapid throughput across large peptide libraries.</li>
+                    </ul>
+                    <img src="assets/Zoopeptides.png" alt="Peptide curvature hotspot visualization" />
                   </div>
-                  <ul>
-                    <li>Automated a pipeline to splice peptide sequences into overlapping segments of varying lengths, enabling sub-sequence level analysis of membrane curvature affinity.</li>
-                    <li>Passed spliced segments through a Variational Autoencoder (VAE) to produce low-dimensional embeddings encoding the physical and biochemical properties of each peptide fragment.</li>
-                    <li>Applied a K-Nearest Neighbors classifier in the VAE latent space to assign each segment a negative Gaussian curvature (NGC) or positive Gaussian curvature (PGC) affinity score based on proximity to labeled reference peptides.</li>
-                    <li>Visualized classification results across peptide length to provide interpretable, position-resolved curvature profiles for downstream analysis.</li>
-                    <li>Automated the full workflow end-to-end using Julia and Bash scripting, enabling rapid throughput across large peptide libraries.</li>
-                  </ul>
-                  <img src="assets/Zoopeptides.png" alt="Peptide curvature hotspot visualization" />
-                </div>
 
-                <div class="project" id="flagellum">
-                  <h4>Flagellum Image Classification</h4>
-                  <div class="skills">
-                    <span class="tag">CNN</span>
-                    <span class="tag">Julia</span>
-                    <span class="tag">Pluto</span>
-                    <span class="tag">Image Processing</span>
-                    <span class="tag">Bash</span>
+                  <div class="project" id="flagellum">
+                    <h4>Flagellum Image Classification</h4>
+                    <div class="skills">
+                      <span class="tag">CNN</span>
+                      <span class="tag">Julia</span>
+                      <span class="tag">Pluto</span>
+                      <span class="tag">Image Processing</span>
+                      <span class="tag">Bash</span>
+                    </div>
+                    <ul>
+                      <li>Built a deep learning pipeline to classify 10,000+ bacterial images with high throughput and reproducibility.</li>
+                      <li>Designed a streamlined interface for manual labeling, enabling 600+ images/hour for training data generation.</li>
+                      <li>Tuned model architectures to boost accuracy and training efficiency, achieving 50%+ accuracy improvements.</li>
+                      <li>Experimented with diverse datasets and processing, boosting model accuracy by 30%.</li>
+                    </ul>
+                    <img src="assets/mosaic.png" alt="Flagellum mosaic" />
                   </div>
-                  <ul>
-                    <li>Built a deep learning pipeline to classify 10,000+ bacterial images with high throughput and reproducibility.</li>
-                    <li>Designed a streamlined interface for manual labeling, enabling 600+ images/hour for training data generation.</li>
-                    <li>Tuned model architectures to boost accuracy and training efficiency, achieving 50%+ accuracy improvements.</li>
-                    <li>Experimented with diverse datasets and processing, boosting model accuracy by 30%.</li>
-                  </ul>
-                  <img src="assets/mosaic.png" alt="Flagellum mosaic" />
-                </div>
 
-                <div class="project" id="eeg-seizure">
-                  <h4>EEG Seizure Detection</h4>
-                  <div class="skills">
-                    <span class="tag">DWT</span>
-                    <span class="tag">Jupyter</span>
-                    <span class="tag">SciPy</span>
-                    <span class="tag">SVM</span>
-                    <span class="tag">PCA</span>
+                  <div class="project" id="eeg-seizure">
+                    <h4>EEG Seizure Detection</h4>
+                    <div class="skills">
+                      <span class="tag">DWT</span>
+                      <span class="tag">Jupyter</span>
+                      <span class="tag">SciPy</span>
+                      <span class="tag">SVM</span>
+                      <span class="tag">PCA</span>
+                    </div>
+                    <ul>
+                      <li>Used machine learning methods to create software that automatically classifies EEG as seizure/non-seizure.</li>
+                      <li>Processed the signals two ways: one using DWT (discrete wavelet transform) and the other using PCA.</li>
+                      <li>Used SVM to classify EEG signals, achieving 96% accuracy, 90% precision, and 90% recall.</li>
+                    </ul>
+                    <a class="doc-link" href="assets/SVM_Seizure_Detection.pdf" target="_blank" rel="noopener noreferrer">Documentation &rarr;</a>
                   </div>
-                  <ul>
-                    <li>Used machine learning methods to create software that automatically classifies EEG as seizure/non-seizure.</li>
-                    <li>Processed the signals two ways: one using DWT (discrete wavelet transform) and the other using PCA.</li>
-                    <li>Used SVM to classify EEG signals, achieving 96% accuracy, 90% precision, and 90% recall.</li>
-                  </ul>
-                  <a class="doc-link" href="assets/SVM_Seizure_Detection.pdf" target="_blank" rel="noopener noreferrer">Documentation &rarr;</a>
-                </div>
 
-                <div class="project" id="tcr">
-                  <h4>TCR-&beta; Design Pipeline</h4>
-                  <div class="skills">
-                    <span class="tag">Jupyter</span>
-                    <span class="tag">Bash</span>
-                    <span class="tag">AlphaFold</span>
-                    <span class="tag">OmegaFold</span>
-                    <span class="tag">ESMFold</span>
-                    <span class="tag">Pandas</span>
-                    <span class="tag">NumPy</span>
-                    <span class="tag">Matplotlib</span>
+                  <div class="project" id="tcr">
+                    <h4>TCR-&beta; Design Pipeline</h4>
+                    <div class="skills">
+                      <span class="tag">Jupyter</span>
+                      <span class="tag">Bash</span>
+                      <span class="tag">AlphaFold</span>
+                      <span class="tag">OmegaFold</span>
+                      <span class="tag">ESMFold</span>
+                      <span class="tag">Pandas</span>
+                      <span class="tag">NumPy</span>
+                      <span class="tag">Matplotlib</span>
+                    </div>
+                    <ul>
+                      <li>Partnered with a startup and applied my method to design a linker for a TCR-beta structure that could create drug delivery that is more specific, and navigates the body with greater efficiency.</li>
+                      <li>Developed a method to computationally design and evaluate 1300+ protein linkers for TCR complexes using AlphaFold, ESMFold, RoseTTAFold, and OmegaFold, facilitating in vitro testing.</li>
+                      <li>(Reach out for GitHub repository.)</li>
+                    </ul>
+                    <img src="assets/pymol.jpeg" alt="PyMOL protein alignment example" />
                   </div>
-                  <ul>
-                    <li>Partnered with a startup and applied my method to design a linker for a TCR-beta structure that could create drug delivery that is more specific, and navigates the body with greater efficiency.</li>
-                    <li>Developed a method to computationally design and evaluate 1300+ protein linkers for TCR complexes using AlphaFold, ESMFold, RoseTTAFold, and OmegaFold, facilitating in vitro testing.</li>
-                    <li>(Reach out for GitHub repository.)</li>
-                  </ul>
-                  <img src="assets/pymol.jpeg" alt="PyMOL protein alignment example" />
-                </div>
 
+                </div>
               </div>
             </div>
-          </div>
 
-        </section>
+          </section>
+        </div><!-- /#tab-portfolio -->
+
+        <!-- ── Resume tab ── -->
+        <div id="tab-resume" class="tab-content">
+
+          <a class="doc-link" href="assets/Yuta_M_Kiami.pdf" target="_blank" rel="noopener noreferrer" style="margin-top: -28px; margin-bottom: 32px; display: inline-flex;">Download Full Resume (PDF) &rarr;</a>
+
+          <section id="education">
+            <h3>Education</h3>
+            <div class="experience">
+              <div class="experience-header">
+                <span class="experience-org">University of California, Los Angeles</span>
+                <span class="experience-date">June 2027</span>
+              </div>
+              <div class="experience-role-row">
+                <span class="experience-role">Physics B.A. &amp; Bioengineering B.S.</span>
+                <span class="experience-meta">GPA: 3.94 / 4.00</span>
+              </div>
+              <div class="skills" style="margin-top:14px;">
+                <span class="tag">Computer Science</span>
+                <span class="tag">Machine Learning</span>
+                <span class="tag">Transducers</span>
+                <span class="tag">Biomolecular Material Science</span>
+                <span class="tag">Mass Transport</span>
+                <span class="tag">Thermodynamics</span>
+                <span class="tag">Quantum Mechanics</span>
+              </div>
+            </div>
+          </section>
+
+          <section id="technical-skills">
+            <h3>Technical Skills</h3>
+            <div class="section-body">
+              <div class="skills-group">
+                <span class="skills-group-label">Languages</span>
+                <div class="skills">
+                  <span class="tag">Python</span>
+                  <span class="tag">C++</span>
+                  <span class="tag">MATLAB</span>
+                  <span class="tag">Julia</span>
+                  <span class="tag">Bash</span>
+                </div>
+              </div>
+              <div class="skills-group">
+                <span class="skills-group-label">Python Libraries</span>
+                <div class="skills">
+                  <span class="tag">NumPy</span>
+                  <span class="tag">Pandas</span>
+                  <span class="tag">SciPy</span>
+                  <span class="tag">Numba</span>
+                  <span class="tag">Matplotlib</span>
+                  <span class="tag">Jupyter</span>
+                  <span class="tag">PyQt</span>
+                </div>
+              </div>
+              <div class="skills-group">
+                <span class="skills-group-label">Machine Learning</span>
+                <div class="skills">
+                  <span class="tag">CNN</span>
+                  <span class="tag">DNN</span>
+                  <span class="tag">VAE</span>
+                  <span class="tag">SVM</span>
+                  <span class="tag">PCA</span>
+                  <span class="tag">KNN</span>
+                  <span class="tag">FBTRCA</span>
+                </div>
+              </div>
+              <div class="skills-group">
+                <span class="skills-group-label">Signal Processing</span>
+                <div class="skills">
+                  <span class="tag">FFT</span>
+                  <span class="tag">DWT</span>
+                  <span class="tag">Filter Banks</span>
+                  <span class="tag">Bandpass Filtering</span>
+                  <span class="tag">Epoch Segmentation</span>
+                </div>
+              </div>
+              <div class="skills-group">
+                <span class="skills-group-label">Simulation</span>
+                <div class="skills">
+                  <span class="tag">Monte Carlo</span>
+                  <span class="tag">Gillespie Algorithm</span>
+                  <span class="tag">Stochastic Simulation</span>
+                </div>
+              </div>
+              <div class="skills-group">
+                <span class="skills-group-label">Tools</span>
+                <div class="skills">
+                  <span class="tag">SolidWorks</span>
+                  <span class="tag">LSL</span>
+                  <span class="tag">Lab Recorder</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="professional-experience">
+            <h3>Professional Experience</h3>
+
+            <div class="experience" id="wang-lab">
+              <div class="experience-header">
+                <span class="experience-org">Shenshen Wang Theoretical Research Group</span>
+                <span class="experience-location">Los Angeles, CA</span>
+              </div>
+              <div class="experience-role-row">
+                <span class="experience-role">Undergraduate Researcher</span>
+                <span class="experience-date">May 2025 – Present</span>
+              </div>
+              <div class="skills">
+                <span class="tag">Python</span>
+                <span class="tag">Numba JIT</span>
+                <span class="tag">NumPy</span>
+                <span class="tag">Pandas</span>
+                <span class="tag">Matplotlib</span>
+                <span class="tag">Monte Carlo</span>
+                <span class="tag">Gillespie Algorithm</span>
+                <span class="tag">NK Landscapes</span>
+                <span class="tag">Stochastic Simulation</span>
+              </div>
+              <ul>
+                <li>Independently designed a model of plasmid HGT on NK landscapes to quantify how epistasis drives persistence.</li>
+                <li>Built a Python simulation pipeline and achieved 50x speedup via Numba JIT, enabling large-scale parameter sweeps.</li>
+                <li>Complemented stochastic simulations with analytical derivations to cross-validate results and identify closed-form regimes.</li>
+                <li>Translated findings into visualizations and presentations, partnering with wet-lab collaborators to test predictions.</li>
+              </ul>
+            </div>
+
+            <div class="experience" id="wong-lab">
+              <div class="experience-header">
+                <span class="experience-org">Gerard Wong Laboratory</span>
+                <span class="experience-location">Los Angeles, CA</span>
+              </div>
+              <div class="experience-role-row">
+                <span class="experience-role">Undergraduate Researcher</span>
+                <span class="experience-date">May 2025 – Present</span>
+              </div>
+              <div class="skills">
+                <span class="tag">Python</span>
+                <span class="tag">Julia</span>
+                <span class="tag">Bash</span>
+                <span class="tag">Pluto</span>
+                <span class="tag">CNN</span>
+                <span class="tag">DNN</span>
+                <span class="tag">VAE</span>
+                <span class="tag">KNN</span>
+                <span class="tag">NumPy</span>
+                <span class="tag">SciPy</span>
+                <span class="tag">Image Processing</span>
+              </div>
+              <ul>
+                <li>Built a deep learning pipeline to classify 10,000+ bacterial data images with high throughput and accuracy.</li>
+                <li>Designed a streamlined interface for manual data labeling, enabling 600+ images/hour for training data generation.</li>
+                <li>Tuned model architectures and experimented with image processing methods, achieving a 43% improvement in accuracy.</li>
+                <li>Designed and automated a data analysis and visualization pipeline for peptide fragments using Notebooks and Bash scripts.</li>
+              </ul>
+            </div>
+
+            <div class="experience" id="optofluidics">
+              <div class="experience-header">
+                <span class="experience-org">UCLA Optofluidics Systems Laboratory</span>
+                <span class="experience-location">Los Angeles, CA</span>
+              </div>
+              <div class="experience-role-row">
+                <span class="experience-role">Undergraduate Researcher</span>
+                <span class="experience-date">Nov 2024 – June 2025</span>
+              </div>
+              <div class="skills">
+                <span class="tag">PDMS Fabrication</span>
+                <span class="tag">Laser Microfabrication</span>
+                <span class="tag">Acoustofluidics</span>
+                <span class="tag">Thermal Bonding</span>
+                <span class="tag">Degassing</span>
+                <span class="tag">Single-Cell Manipulation</span>
+                <span class="tag">Chip Prototyping</span>
+              </div>
+              <ul>
+                <li>Prototyped graphite-PDMS acoustofluidic chips for single-cell manipulation, allowing for efficient iteration of designs.</li>
+                <li>Applied laser microfabrication and automation to produce 60+ microscopic air cavities per minute in graphite chips.</li>
+                <li>Applied a complex fabrication process, including degassing, thermal bonding, and laser manufacturing.</li>
+              </ul>
+            </div>
+
+            <div class="experience" id="fred-hutch">
+              <div class="experience-header">
+                <span class="experience-org">Fred Hutch Cancer Center</span>
+                <span class="experience-location">Seattle, WA</span>
+              </div>
+              <div class="experience-role-row">
+                <span class="experience-role">Computational Research Intern</span>
+                <span class="experience-date">Jun 2024 – Sep 2024</span>
+              </div>
+              <div class="skills">
+                <span class="tag">Python</span>
+                <span class="tag">Bash</span>
+                <span class="tag">AlphaFold</span>
+                <span class="tag">RoseTTAFold</span>
+                <span class="tag">ESMFold</span>
+                <span class="tag">OmegaFold</span>
+                <span class="tag">Pandas</span>
+                <span class="tag">NumPy</span>
+                <span class="tag">Matplotlib</span>
+                <span class="tag">PyMOL</span>
+              </div>
+              <ul>
+                <li>Developed a computational pipeline to design and evaluate 1300+ protein linkers, integrating AlphaFold and RoseTTAFold.</li>
+                <li>Partnered with a startup to apply my pipeline for a novel TCR-&beta; drug delivery system to increase delivery efficiency by 23%.</li>
+                <li>Organized and presented findings to collaborators, including Nobel laureate Dr. David Baker (Institute for Protein Design).</li>
+              </ul>
+            </div>
+
+          </section>
+
+          <section id="leadership">
+            <h3>Leadership &amp; Clubs</h3>
+
+            <div class="experience" id="crux">
+              <div class="experience-header">
+                <span class="experience-org">CruX UCLA</span>
+                <span class="experience-location">Los Angeles, CA</span>
+              </div>
+
+              <div class="experience-role-block">
+                <div class="experience-role-row">
+                  <span class="experience-role">Educational Vice President</span>
+                  <span class="experience-date">Mar 2026 – Present</span>
+                </div>
+                <div class="skills">
+                  <span class="tag">EEG</span>
+                  <span class="tag">SSVEP</span>
+                  <span class="tag">FBTRCA</span>
+                  <span class="tag">Signal Processing</span>
+                  <span class="tag">Python</span>
+                  <span class="tag">BCI</span>
+                </div>
+                <ul>
+                  <li>Design a signal processing, machine learning, and neuroscience curriculum for new members as an introduction to BCI.</li>
+                  <li>Formulate a detailed project plan and provide continuous guidance for next year's neuroengineering competition team.</li>
+                  <li>Manage and guide a team of 4 technical coordinators in developing and presenting 20+ workshops and technical events.</li>
+                </ul>
+              </div>
+
+              <div class="experience-role-block">
+                <div class="experience-role-row">
+                  <span class="experience-role">Neuroengineering Competition Team Engineer</span>
+                  <span class="experience-date">Oct 2025 – Apr 2026</span>
+                </div>
+                <div class="skills">
+                  <span class="tag">SSVEP</span>
+                  <span class="tag">EMG</span>
+                  <span class="tag">FBTRCA</span>
+                  <span class="tag">EEG</span>
+                  <span class="tag">Signal Processing</span>
+                  <span class="tag">Python</span>
+                  <span class="tag">SciPy</span>
+                  <span class="tag">NumPy</span>
+                  <span class="tag">PyQt</span>
+                  <span class="tag">LSL</span>
+                  <span class="tag">Lab Recorder</span>
+                  <span class="tag">Real-Time Classification</span>
+                  <span class="tag">BCI</span>
+                </div>
+                <ul>
+                  <li>Designed an SSVEP+EMG neuro-piano for real-time playing, iterating prototypes to achieve 96% classification accuracy.</li>
+                  <li>Designed a full-stack pipeline including live signal processing, ML classification, and an intuitive GUI.</li>
+                  <li>Won first place at the California Neurotechnology Conference against other schools, including Berkeley, USC, and UCSD.</li>
+                </ul>
+              </div>
+
+              <div class="experience-role-block">
+                <div class="experience-role-row">
+                  <span class="experience-role">Technical Coordinator</span>
+                  <span class="experience-date">Mar 2025 – Mar 2026</span>
+                </div>
+                <ul>
+                  <li>Revamped 20+ technical workshops for new CruX members, increasing new member retention by 60%.</li>
+                  <li>Advised existing BCI teams and onboarded new teams across software, signal processing, and project workflow.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="experience" id="samueli">
+              <div class="experience-header">
+                <span class="experience-org">Samueli School of Engineering</span>
+                <span class="experience-location">Los Angeles, CA</span>
+              </div>
+              <div class="experience-role-row">
+                <span class="experience-role">Engineering Ambassador</span>
+                <span class="experience-date">May 2025 – Present</span>
+              </div>
+              <ul>
+                <li>Lead 5+ tours/quarter and present engineering programs to prospective students, providing insights and live Q&amp;A.</li>
+                <li>Support admissions and recruiting events as a representative of the engineering student body.</li>
+              </ul>
+            </div>
+
+          </section>
+
+
+        </div><!-- /#tab-resume -->
+
       </div>
     </div>
 
@@ -253,52 +580,119 @@
     </div>
 
     <script>
+      // --- Tab state ---
+      let activeTabName = 'portfolio';
+
       // --- Active nav highlighting on scroll ---
-      const tocLinks = document.querySelectorAll('.toc-link');
-      const scrollTargets = [
-        ...document.querySelectorAll('section[id]'),
-        ...document.querySelectorAll('.project[id]')
-      ].sort((a, b) => a.offsetTop - b.offsetTop);
+      function getScrollTargets() {
+        const activeTab = document.getElementById('tab-' + activeTabName);
+        return [
+          document.getElementById('about'),
+          ...activeTab.querySelectorAll('section[id]'),
+          ...activeTab.querySelectorAll('.project[id]'),
+          ...activeTab.querySelectorAll('.experience[id]'),
+        ].filter(Boolean).sort((a, b) => a.offsetTop - b.offsetTop);
+      }
 
       function updateActiveNav() {
         const scrollPos = window.scrollY + window.innerHeight * 0.28;
-        let current = scrollTargets[0];
-        scrollTargets.forEach(el => {
-          if (el.offsetTop <= scrollPos) current = el;
-        });
-        tocLinks.forEach(link => link.classList.remove('active'));
+        const targets = getScrollTargets();
+        let current = targets[0];
+        targets.forEach(el => { if (el.offsetTop <= scrollPos) current = el; });
+
+        const activeNav = document.querySelector('.sidebar-nav.active');
+        if (!activeNav) return;
+        activeNav.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
+
         if (current) {
-          const activeLink = document.querySelector(`.toc-link[href="#${current.id}"]`);
+          const activeLink = activeNav.querySelector(`.toc-link[href="#${current.id}"]`);
           if (activeLink) {
             activeLink.classList.add('active');
             if (current.classList.contains('project')) {
-              const projectsLink = document.querySelector('.toc-link[href="#projects"]');
-              if (projectsLink) projectsLink.classList.add('active');
+              activeNav.querySelector('.toc-link[href="#projects"]')?.classList.add('active');
+            }
+            if (current.classList.contains('experience')) {
+              const expSection = document.getElementById('professional-experience');
+              const leadSection = document.getElementById('leadership');
+              if (expSection?.contains(current))
+                activeNav.querySelector('.toc-link[href="#professional-experience"]')?.classList.add('active');
+              if (leadSection?.contains(current))
+                activeNav.querySelector('.toc-link[href="#leadership"]')?.classList.add('active');
             }
           }
         }
       }
 
       window.addEventListener('scroll', updateActiveNav, { passive: true });
-      updateActiveNav();
 
-      // --- Fade-in sections that start below the fold ---
-      const sections = document.querySelectorAll('section');
-      sections.forEach(el => {
-        if (el.getBoundingClientRect().top > window.innerHeight) {
-          el.classList.add('will-animate');
-        }
-      });
-
+      // --- Section fade-in ---
       const fadeObserver = new IntersectionObserver((entries) => {
         entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            fadeObserver.unobserve(e.target);
-          }
+          if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); }
         });
       }, { threshold: 0.08 });
 
+      function initSectionAnimations(container) {
+        container.querySelectorAll('section').forEach(el => {
+          if (!el.classList.contains('will-animate') && el.getBoundingClientRect().top > window.innerHeight) {
+            el.classList.add('will-animate');
+            fadeObserver.observe(el);
+          }
+        });
+      }
+
+      // Init portfolio tab sections (starts active)
+      const aboutSection = document.getElementById('about');
+      if (aboutSection.getBoundingClientRect().top > window.innerHeight) {
+        aboutSection.classList.add('will-animate');
+        fadeObserver.observe(aboutSection);
+      }
+      initSectionAnimations(document.getElementById('tab-portfolio'));
+
+      // --- Tab switching ---
+      let resumeTabInited = false;
+
+      function activateTab(tabName) {
+        if (tabName === activeTabName) return;
+
+        const oldTab = document.getElementById('tab-' + activeTabName);
+        const newTab = document.getElementById('tab-' + tabName);
+        const oldNav = document.getElementById('nav-' + activeTabName);
+        const newNav = document.getElementById('nav-' + tabName);
+
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.tab === tabName);
+        });
+
+        // Crossfade sidebar nav
+        oldNav.classList.remove('active');
+        oldNav.classList.add('inactive');
+        newNav.classList.remove('inactive');
+        newNav.classList.add('active');
+
+        // Switch tab content
+        oldTab.classList.remove('active');
+        newTab.classList.add('active');
+        activeTabName = tabName;
+
+        // Init resume tab animations on first show (needs two rAF to get real layout)
+        if (tabName === 'resume' && !resumeTabInited) {
+          resumeTabInited = true;
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            initSectionAnimations(newTab);
+          }));
+        }
+
+        updateActiveNav();
+      }
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => activateTab(btn.dataset.tab));
+      });
+
+      updateActiveNav();
+
+      // --- Fade-in for sections already in DOM (run after tab setup) ---
       document.querySelectorAll('section.will-animate').forEach(el => fadeObserver.observe(el));
 
       // --- Collapsible project groups ---
@@ -347,7 +741,7 @@
 
       const GB = {
         BALL_R: 3.0, PEG_R: 3.0,
-        GRAVITY: 0.15, SPAWN_EVERY: 30, MAX_ACTIVE: 44,
+        GRAVITY: 0.15, SPAWN_EVERY: 23, MAX_ACTIVE: 88,
         BALL_COLOR: '#3060C0', PEG_COLOR: '#9AAAB8', LANE_COLOR: '#9AAAB8',
         PIT_H: 180, PIT_BALLS: 120, GATE_W: 16,
       };
@@ -385,32 +779,34 @@
         gbROWS   = Math.max(14, Math.min(40, Math.round(contentW / 38)));
         gbHGap   = contentW / (gbROWS + 1);
         const boardH = gbLaneTopY - gbTopY;
-        gbVGap   = boardH / Math.max(1, gbROWS - 1);
+        const pegROWS = gbROWS * 2;
+        gbVGap   = boardH / Math.max(1, pegROWS - 1);
 
-        // True Galton board pegs
-        for (let r = 0; r < gbROWS; r++) {
-          const n  = r + 1;
-          const sx = cx - ((n - 1) * gbHGap) / 2;
-          for (let i = 0; i < n; i++)
-            gbPegs.push({ x: sx + i * gbHGap, y: gbTopY + r * gbVGap });
+        // Full-width staggered pegs, anchored so gbCenterX falls on a peg every even row
+        const evenAnchor = gbCenterX % gbHGap;
+        for (let r = 0; r < pegROWS; r++) {
+          const anchor = (r % 2 === 0) ? evenAnchor : evenAnchor + gbHGap / 2;
+          const start  = anchor - Math.ceil(anchor / gbHGap) * gbHGap;
+          for (let px = start; px <= W; px += gbHGap)
+            gbPegs.push({ x: px, y: gbTopY + r * gbVGap });
         }
 
-        gbNumBins    = gbROWS + 1;
-        gbLaneStartX = cx - (gbNumBins / 2) * gbHGap;
-        gbPitLeftX   = gbLaneStartX;
-        gbPitRightX  = gbLaneStartX + gbNumBins * gbHGap;
+        gbNumBins    = Math.ceil(W / gbHGap) + 1;
+        gbLaneStartX = 0;
+        gbPitLeftX   = cx - ((gbROWS + 1) / 2) * gbHGap;
+        gbPitRightX  = cx + ((gbROWS + 1) / 2) * gbHGap;
 
         // Inward unit normals for the two slanted funnel walls
         const gH = GB.GATE_W / 2;
         const dxL = gbCenterX - gH - gbPitLeftX,  dyL = gbPitBottomY - gbPitTopY;
         const lenL = Math.sqrt(dxL*dxL + dyL*dyL);
-        gbPitNxL =  dyL / lenL;   // +x (inward right)
-        gbPitNyL = -dxL / lenL;   // -y (inward up)
+        gbPitNxL =  dyL / lenL;
+        gbPitNyL = -dxL / lenL;
 
         const dxR = gbCenterX + gH - gbPitRightX,  dyR = gbPitBottomY - gbPitTopY;
         const lenR = Math.sqrt(dxR*dxR + dyR*dyR);
-        gbPitNxR = -dyR / lenR;   // -x (inward left)
-        gbPitNyR =  dxR / lenR;   // -y (inward up, dxR<0)
+        gbPitNxR = -dyR / lenR;
+        gbPitNyR =  dxR / lenR;
       }
 
       const gbBinCX = bin => gbLaneStartX + (bin + 0.5) * gbHGap;
@@ -461,7 +857,6 @@
       function gbUpdate() {
         gbFrame++;
 
-        // --- Pit: fill with balls, then trickle at 2x galton rate ---
         const spawnPitBall = () => {
           const margin = GB.BALL_R + 4;
           gbPitBalls.push({
@@ -477,7 +872,6 @@
           spawnPitBall();
         }
 
-        // Pit ball physics — frozen balls are static, active balls match galton speed
         for (const b of gbPitBalls) {
           const dLv = (b.x - gbPitLeftX)  * gbPitNxL + (b.y - gbPitTopY) * gbPitNyL;
           const dRv = (b.x - gbPitRightX) * gbPitNxR + (b.y - gbPitTopY) * gbPitNyR;
@@ -493,7 +887,6 @@
           b.x  += b.vx;
           b.y  += b.vy;
 
-          // Left slanted funnel wall
           const dL = (b.x - gbPitLeftX) * gbPitNxL + (b.y - gbPitTopY) * gbPitNyL;
           if (dL < GB.BALL_R) {
             b.x += gbPitNxL * (GB.BALL_R - dL);
@@ -502,7 +895,6 @@
             if (vn < 0) { b.vx -= vn * gbPitNxL; b.vy -= vn * gbPitNyL; }
           }
 
-          // Right slanted funnel wall
           const dR = (b.x - gbPitRightX) * gbPitNxR + (b.y - gbPitTopY) * gbPitNyR;
           if (dR < GB.BALL_R) {
             b.x += gbPitNxR * (GB.BALL_R - dR);
@@ -511,13 +903,11 @@
             if (vn < 0) { b.vx -= vn * gbPitNxR; b.vy -= vn * gbPitNyR; }
           }
 
-          // Floor at pit bottom
           if (b.y > gbPitBottomY - GB.BALL_R) {
             b.y = gbPitBottomY - GB.BALL_R;
             b.vy = 0; b.vx *= 0.5;
           }
 
-          // Track velocity direction change (rolling = stable direction = low dirChange)
           const spd = Math.hypot(b.vx, b.vy), prevSpd = Math.hypot(b.prevVx, b.prevVy);
           b.dirChange = (spd > 0.05 && prevSpd > 0.05)
             ? 1 - Math.max(-1, Math.min(1, (b.vx*b.prevVx + b.vy*b.prevVy) / (spd * prevSpd)))
@@ -525,7 +915,6 @@
           b.prevVx = b.vx; b.prevVy = b.vy;
         }
 
-        // Ball-ball separation — 6 passes; frozen balls act as static obstacles
         const gbPitOverlapped = new Set();
         for (let pass = 0; pass < 6; pass++) {
           for (let i = 0; i < gbPitBalls.length; i++) {
@@ -545,7 +934,6 @@
           }
         }
 
-        // Freeze any ball overlapping for 5+ consecutive frames
         for (let i = 0; i < gbPitBalls.length; i++) {
           const b = gbPitBalls[i];
           if (gbPitOverlapped.has(i)) {
@@ -557,7 +945,6 @@
           }
         }
 
-        // --- Galton board: independent spawn (same as original) ---
         if (!gbStopped && gbFrame % GB.SPAWN_EVERY === 0 &&
             gbBalls.filter(b => !b.settled).length < GB.MAX_ACTIVE) {
           gbBalls.push({
@@ -567,7 +954,6 @@
           });
         }
 
-        // Galton ball update
         for (const b of gbBalls) {
           b.age++;
           if (b.settled) { b.alpha = Math.min(1, b.alpha + 0.012); continue; }
@@ -575,7 +961,6 @@
           gbMoveBall(b);
         }
 
-        // Check stop: any bin fills to top of slot area
         if (!gbStopped) {
           const maxStack = gbSlotHeight - GB.BALL_R * 3;
           for (const cnt of Object.values(gbCols)) {
@@ -591,7 +976,6 @@
         bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
         const gateHalf = GB.GATE_W / 2;
 
-        // Funnel walls (slanted inward from each top corner to gate)
         bgCtx.strokeStyle = GB.LANE_COLOR;
         bgCtx.lineWidth = 1.5;
         bgCtx.globalAlpha = 1.0;
@@ -602,7 +986,6 @@
         bgCtx.lineTo(gbCenterX + gateHalf, gbPitBottomY);
         bgCtx.stroke();
 
-        // Drop tube from gate down to first peg row
         bgCtx.beginPath();
         bgCtx.moveTo(gbCenterX - gateHalf, gbPitBottomY);
         bgCtx.lineTo(gbCenterX - gateHalf, gbTopY);
@@ -610,7 +993,6 @@
         bgCtx.lineTo(gbCenterX + gateHalf, gbTopY);
         bgCtx.stroke();
 
-        // Pit balls
         bgCtx.fillStyle = GB.BALL_COLOR;
         for (const b of gbPitBalls) {
           bgCtx.globalAlpha = b.alpha;
@@ -619,7 +1001,6 @@
           bgCtx.fill();
         }
 
-        // Lane walls (galton board bins)
         bgCtx.strokeStyle = GB.LANE_COLOR;
         bgCtx.lineWidth = 1.5;
         bgCtx.globalAlpha = 1.0;
@@ -632,7 +1013,6 @@
           bgCtx.stroke();
         }
 
-        // Pegs
         bgCtx.fillStyle = GB.PEG_COLOR;
         bgCtx.globalAlpha = 1.0;
         for (const p of gbPegs) {
@@ -641,7 +1021,6 @@
           bgCtx.fill();
         }
 
-        // Galton balls
         bgCtx.fillStyle = GB.BALL_COLOR;
         for (const b of gbBalls) {
           bgCtx.globalAlpha = b.alpha;
@@ -653,10 +1032,9 @@
       }
 
       function gbResize() {
-        // Collapse canvas so natural page height is measurable
         bgCanvas.style.display = 'none';
         document.body.style.paddingBottom = '0px';
-        document.body.offsetHeight; // force reflow
+        document.body.offsetHeight;
 
         const naturalH = document.documentElement.scrollHeight;
         const ext      = Math.round(naturalH * 0.087);
